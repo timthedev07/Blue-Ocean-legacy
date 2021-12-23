@@ -14,6 +14,7 @@
     "formik": "^2.2.9",
     "framer-motion": "^4",
     "next": "12.0.7",
+    "nodemailer": "^6.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "yup": "^0.32.11"
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.0",
     "@types/node": "17.0.2",
+    "@types/nodemailer": "^6.4.4",
     "@types/react": "17.0.37",
     "autoprefixer": "^10.4.0",
     "eslint": "8.5.0",

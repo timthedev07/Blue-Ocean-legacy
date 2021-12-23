@@ -1,8 +1,9 @@
 import { FC } from "react";
 import Head from "next/head";
+import { Nav } from "./navigation/Nav";
 
 export const metadata = {
-  title: "",
+  title: "Blue Ocean",
   image: "",
   description: "",
   domain: "https://something.com",
@@ -55,6 +56,7 @@ export const Layout: FC = ({ children }) => {
         id="App"
         className="min-h-screen bg-slate-800 min-w-[350px] overflow-hidden"
       >
+        <Nav />
         {children}
       </div>
     </>

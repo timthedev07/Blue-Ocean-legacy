@@ -41,7 +41,7 @@ const Contact: NextPage = () => {
 
   return (
     <div className="flex w-full justify-center items-center">
-      <div className="p-3 min-w-[20rem] max-w-sm w-full">
+      <div className="p-3 min-w-[20rem] max-w-sm w-full border rounded-lg mt-7">
         <Box textAlign="center">
           <Heading>Contact Us</Heading>
         </Box>

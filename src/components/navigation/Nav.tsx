@@ -20,7 +20,8 @@ export const Nav: FC<NavProps> = ({ className }) => {
   return (
     <nav
       className={
-        className + " w-full h-12 bg-slate-900 flex pl-10 items-center"
+        className +
+        " w-full h-12 bg-slate-900 flex pl-10 items-center z-50 fixed top-0"
       }
     >
       <Link href="/" passHref>

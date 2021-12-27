@@ -7,13 +7,13 @@ import { AnimatePresence } from "framer-motion";
 
 const App = ({ Component, pageProps, router }: AppProps) => {
   return (
-    <Layout>
-      <ChakraProvider theme={chakraTheme}>
+    <ChakraProvider theme={chakraTheme}>
+      <Layout>
         <AnimatePresence exitBeforeEnter>
           <Component {...pageProps} key={router.route} />
         </AnimatePresence>
-      </ChakraProvider>
-    </Layout>
+      </Layout>
+    </ChakraProvider>
   );
 };
 

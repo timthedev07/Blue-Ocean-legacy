@@ -8,8 +8,8 @@ import {
   FormControl,
   Box,
   Heading,
-  VStack,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 
 export interface ContactFormValues {
   name: string;
@@ -40,7 +40,12 @@ const Contact: NextPage = () => {
   });
 
   return (
-    <div className="flex w-full justify-center items-center">
+    <motion.div
+      className="flex w-full justify-center items-center"
+      exit={{ opacity: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
       <div className="p-3 min-w-[20rem] max-w-sm w-full border rounded-lg mt-7">
         <Box textAlign="center">
           <Heading>Contact Us</Heading>
@@ -104,7 +109,7 @@ const Contact: NextPage = () => {
           </form>
         </Box>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

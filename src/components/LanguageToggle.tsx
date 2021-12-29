@@ -1,13 +1,14 @@
 import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { FC, useEffect, useState } from "react";
 
 interface LanguageToggleProps {
   className?: string;
 }
 
-const Locales = ["en-US", "es-ES", "zh-CN"] as const;
-type LocaleType = typeof Locales[number];
-const LocaleString: Record<LocaleType, string> = {
+export const Locales = ["en-US", "es-ES", "zh-CN"] as const;
+export type LocaleType = typeof Locales[number];
+export const LocaleString: Record<LocaleType, string> = {
   "en-US": "English(US)",
   "es-ES": "Español(ES)",
   "zh-CN": "中文(简体)",
@@ -23,15 +24,23 @@ export const LanguageToggle: FC<LanguageToggleProps> = ({ className = "" }) => {
   const [selectedLang, setSelectedLang] = useState<LocaleType>(
     () => Locales[0]
   );
+  const { push, asPath } = useRouter();
 
   useEffect(() => {
     const cached = window.localStorage.getItem("locale") as LocaleType | null;
     if (!cached) {
       window.localStorage.setItem("locale", Locales[0]);
       setSelectedLang(Locales[0]);
+      push(asPath, asPath, {
+        locale: Locales[0],
+      });
       return;
+    } else {
+      setSelectedLang(cached);
+      push(asPath, asPath, {
+        locale: cached,
+      });
     }
-    setSelectedLang(cached);
   }, []);
 
   const handleChangeLocale = (e: any) => {
@@ -39,6 +48,9 @@ export const LanguageToggle: FC<LanguageToggleProps> = ({ className = "" }) => {
     setSelectedLang(newLocale);
     if (typeof window === "undefined") return;
     window.localStorage.setItem("locale", newLocale);
+    push(asPath, asPath, {
+      locale: newLocale,
+    });
   };
 
   return (

@@ -1,7 +1,7 @@
 type Translation = Record<string, string>;
 
 export const getTranslation = <T extends Translation>(
-  locale: string,
+  locale: string | undefined,
   en: T,
   es: T,
   zh: T

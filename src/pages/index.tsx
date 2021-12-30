@@ -1,6 +1,9 @@
 import type { NextPage } from "next";
 import { motion } from "framer-motion";
-import { LanguageToggle } from "../components/LanguageToggle";
+import { useRouter } from "next/router";
+import { LocaleType } from "../components/LanguageToggle";
+import { enIndex, esIndex, zhIndex } from "../translations";
+import { getTranslation } from "../utils/getTranslation";
 
 const fadeIn = {
   initial: {
@@ -18,6 +21,10 @@ const fadeIn = {
 };
 
 const Home: NextPage = () => {
+  const router = useRouter();
+  const locale = router.locale as LocaleType;
+  const translation = getTranslation(locale, enIndex, esIndex, zhIndex);
+
   return (
     <motion.div exit={{ opacity: 0 }} initial="initial" animate="animate">
       {/* Hero */}
@@ -31,12 +38,12 @@ const Home: NextPage = () => {
           className="z-10 p-14 bg-opacity-70 bg-slate-700 rounded-lg"
           variants={fadeIn}
         >
-          <h1 className="font-semibold z-20">Blue Ocean International Trade</h1>
-          <span>An International Trading Business</span>
+          <h1 className="font-semibold z-20">{translation.hero}</h1>
+          <span>{translation.heroSubheading}</span>
         </motion.div>
       </div>
       <section>
-        <LanguageToggle />
+        <div className="w-[clamp(300px, 90%, 1200px)] bg-slate-400 bg-opacity-70 border rond"></div>
       </section>
     </motion.div>
   );

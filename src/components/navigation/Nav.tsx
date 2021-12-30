@@ -1,23 +1,29 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { FC } from "react";
+import { enNav, esNav, zhNav } from "../../translations/components/Nav";
+import { getTranslation } from "../../utils/getTranslation";
 import { LanguageToggle } from "../LanguageToggle";
 
 interface NavProps {
   className?: string;
 }
 
-interface NavLink {
-  name: string;
+interface NavLink<T extends string> {
+  name: T;
   href: string;
 }
 
-export const NAV_LINKS: NavLink[] = [
-  { href: "/about", name: "About Us" },
-  { href: "/contact", name: "Contact Us" },
-  { href: "/products", name: "Products" },
+export const NAV_LINKS: NavLink<"aboutUs" | "contactUs" | "products">[] = [
+  { href: "/about", name: "aboutUs" },
+  { href: "/contact", name: "contactUs" },
+  { href: "/products", name: "products" },
 ];
 
 export const Nav: FC<NavProps> = ({ className }) => {
+  const { locale } = useRouter();
+  const t = getTranslation(locale, enNav, esNav, zhNav);
+
   return (
     <nav
       className={
@@ -36,7 +42,7 @@ export const Nav: FC<NavProps> = ({ className }) => {
         {NAV_LINKS.map(({ href, name }) => (
           <Link key={name} href={href} passHref>
             <li className="cursor-pointer text-neutral-400 transition duration-200 hover:text-slate-50">
-              {name}
+              {t[name]}
             </li>
           </Link>
         ))}

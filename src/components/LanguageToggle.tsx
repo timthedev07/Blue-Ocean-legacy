@@ -24,30 +24,14 @@ export const LanguageToggle: FC<LanguageToggleProps> = ({ className = "" }) => {
   const [selectedLang, setSelectedLang] = useState<LocaleType>(
     () => Locales[0]
   );
-  const { push, asPath } = useRouter();
+  const { push, asPath, locale } = useRouter();
 
   useEffect(() => {
-    const cached = window.localStorage.getItem("locale") as LocaleType | null;
-    if (!cached) {
-      window.localStorage.setItem("locale", Locales[0]);
-      setSelectedLang(Locales[0]);
-      push(asPath, asPath, {
-        locale: Locales[0],
-      });
-      return;
-    } else {
-      setSelectedLang(cached);
-      push(asPath, asPath, {
-        locale: cached,
-      });
-    }
-  }, []);
+    setSelectedLang(locale as LocaleType);
+  }, [locale]);
 
-  const handleChangeLocale = (e: any) => {
-    const newLocale = e.target.value as LocaleType;
+  const handleChangeLocale = (newLocale: LocaleType) => {
     setSelectedLang(newLocale);
-    if (typeof window === "undefined") return;
-    window.localStorage.setItem("locale", newLocale);
     push(asPath, asPath, {
       locale: newLocale,
     });
@@ -65,7 +49,11 @@ export const LanguageToggle: FC<LanguageToggleProps> = ({ className = "" }) => {
         <MenuList width="250px" zIndex={1000000}>
           {Locales.filter((each) => each !== selectedLang).map((each) => {
             return (
-              <MenuItem key={each} value={each} onClick={handleChangeLocale}>
+              <MenuItem
+                key={each}
+                value={each}
+                onClick={() => handleChangeLocale(each)}
+              >
                 <LocaleImage locale={each} />
                 {LocaleString[each]}
               </MenuItem>

@@ -14,7 +14,7 @@ interface NavLink<T extends string> {
   href: string;
 }
 
-export const NAV_LINKS: NavLink<"aboutUs" | "contactUs" | "products">[] = [
+export const NAV_LINKS: NavLink<keyof typeof enNav>[] = [
   { href: "/about", name: "aboutUs" },
   { href: "/contact", name: "contactUs" },
   { href: "/products", name: "products" },

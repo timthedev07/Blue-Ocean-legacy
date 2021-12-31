@@ -48,11 +48,11 @@ const Home: NextPage = () => {
   return (
     <motion.div exit={{ opacity: 0 }} initial="initial" animate="animate">
       {/* Hero */}
-      <div className="flex flex-col items-center justify-center h-[550px] bg-cyan-600 text-center relative">
+      <div className="with-scroll-indicator flex flex-col items-center justify-center h-[550px] bg-cyan-600 text-center relative">
         <div
           className={`transition-all duration-700 ${
             showCover ? "left-0" : "-left-[100vw]"
-          } w-full h-full bg-neutral-900 bg-opacity-80 absolute z-[11] p-9 flex flex-col items-start`}
+          } w-full h-full bg-neutral-900 bg-opacity-80 absolute p-9 flex flex-col items-start z-40`}
           onMouseEnter={() => {
             setShowCover(true);
           }}
@@ -79,47 +79,48 @@ const Home: NextPage = () => {
             {translation.visionHeading}
           </motion.h3>
           {showCover ? (
-            <motion.ul
-              className="pl-4 flex flex-col items-start"
-              variants={{
-                animate: {
-                  transition: {
-                    staggerChildren: 0.2,
+            <>
+              <motion.ul
+                className="pl-4 flex flex-col items-start"
+                variants={{
+                  animate: {
+                    transition: {
+                      staggerChildren: 0.2,
+                    },
                   },
-                },
-              }}
-            >
-              {translation.visions.map((each) => (
-                <motion.li
-                  className="m-3"
-                  key={each}
-                  variants={{
-                    initial: {
-                      x: "-50vw",
-                      opacity: 0,
-                    },
-                    animate: {
-                      x: 0,
-                      opacity: 1,
-                      transition: {
-                        duration: 1,
-                        ease: [0.6, -0.05, 0.01, 0.99],
+                }}
+              >
+                {translation.visions.map((each) => (
+                  <motion.li
+                    className="m-3"
+                    key={each}
+                    variants={{
+                      initial: {
+                        x: "-50vw",
+                        opacity: 0,
                       },
-                    },
-                  }}
-                >
-                  {each}
-                </motion.li>
-              ))}
-            </motion.ul>
+                      animate: {
+                        x: 0,
+                        opacity: 1,
+                        transition: {
+                          duration: 1,
+                          ease: [0.6, -0.05, 0.01, 0.99],
+                        },
+                      },
+                    }}
+                  >
+                    {each}
+                  </motion.li>
+                ))}
+              </motion.ul>
+              <div></div>
+            </>
           ) : (
             ""
           )}
         </div>
-        <img
-          className="absolute z-0 w-full h-full object-cover object-center brightness-90"
-          src="/images/landing-hero.jpeg"
-          alt=""
+        <div
+          className="absolute z-0 w-full h-full object-cover object-center brightness-90 bg-sky-500"
           onMouseEnter={() => {
             setShowCover(true);
           }}
@@ -128,10 +129,10 @@ const Home: NextPage = () => {
           }}
         />
         <motion.div
-          className="flex flex-col justify-center items-center gap-3 min-w-[300px] w-[80%] max-w-[1080px] min-h-[230px] z-10 p-14 bg-opacity-70 bg-slate-700 rounded-lg"
+          className="flex flex-col justify-center items-center gap-3 h-min w-[80%] max-w-[1080px] z-10 bg-opacity-70 text-zinc-200 rounded-lg"
           variants={fadeInHero}
         >
-          <h1 className="font-semibold z-20 text-5xl md:text-[4rem] ">
+          <h1 className="font-semibold z-20 text-5xl md:text-[4rem]">
             {translation.hero}
           </h1>
           <span>{translation.heroSubheading}</span>

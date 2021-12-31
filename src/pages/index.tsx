@@ -92,7 +92,7 @@ const Home: NextPage = () => {
               >
                 {translation.visions.map((each) => (
                   <motion.li
-                    className="m-3"
+                    className="m-4 text-left"
                     key={each}
                     variants={{
                       initial: {

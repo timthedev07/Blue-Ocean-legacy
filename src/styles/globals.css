@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url(./scroll-indicator.module.css);
 
 body h1 {
   font-size: 4rem;

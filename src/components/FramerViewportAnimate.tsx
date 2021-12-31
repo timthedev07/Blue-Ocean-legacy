@@ -1,13 +1,19 @@
-import { motion, useAnimation, AnimationProps } from "framer-motion";
+import {
+  motion,
+  useAnimation,
+  AnimationProps,
+  ForwardRefComponent,
+  HTMLMotionProps,
+} from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FC, useEffect } from "react";
 
-export const AnimateVisible: FC<AnimationProps & { className: string }> = ({
-  children,
-  variants,
-  transition,
-  className,
-}) => {
+export const AnimateVisible: FC<
+  AnimationProps & {
+    className: string;
+    Wrapper?: ForwardRefComponent<HTMLDivElement, HTMLMotionProps<any>>;
+  }
+> = ({ children, variants, transition, className, Wrapper = motion.div }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView();
 
@@ -18,7 +24,7 @@ export const AnimateVisible: FC<AnimationProps & { className: string }> = ({
   }, [controls, inView]);
 
   return (
-    <motion.div
+    <Wrapper
       ref={ref}
       animate={controls}
       initial="hidden"
@@ -27,6 +33,6 @@ export const AnimateVisible: FC<AnimationProps & { className: string }> = ({
       className={className}
     >
       {children}
-    </motion.div>
+    </Wrapper>
   );
 };

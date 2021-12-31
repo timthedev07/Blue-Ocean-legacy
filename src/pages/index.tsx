@@ -6,6 +6,7 @@ import { enIndex, esIndex, zhIndex } from "../translations";
 import { getTranslation } from "../utils/getTranslation";
 import { AnimateVisible } from "../components/FramerViewportAnimate";
 import { useState } from "react";
+import Link from "next/link";
 
 const start = {
   y: 100,
@@ -79,7 +80,7 @@ const Home: NextPage = () => {
             {translation.visionHeading}
           </motion.h3>
           {showCover ? (
-            <>
+            <div className="flex flex-col justify-between h-full w-full">
               <motion.ul
                 className="pl-4 flex flex-col items-start"
                 variants={{
@@ -113,8 +114,14 @@ const Home: NextPage = () => {
                   </motion.li>
                 ))}
               </motion.ul>
-              <div></div>
-            </>
+              <div className="w-full">
+                <Link href="/about" passHref>
+                  <button className=" p-3 px-6 bg-sky-600 rounded-md uppercase transition duration-200 hover:bg-sky-500">
+                    Learn more
+                  </button>
+                </Link>
+              </div>
+            </div>
           ) : (
             ""
           )}

@@ -2,27 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-h1 {
-  font-size: 4rem !important;
+body h1 {
+  font-size: 4rem;
 }
 
-h2 {
-  font-size: 2.8rem !important;
+body h2 {
+  font-size: 2.8rem;
 }
 
-h3 {
-  font-size: 2rem !important;
+body h3 {
+  font-size: 2rem;
 }
 
-h4 {
-  font-size: 1.4rem !important;
+body h4 {
+  font-size: 1.4rem;
 }
 
-p {
-  font-size: 1rem !important;
-  font-weight: 500 !important;
+body p {
+  font-size: 1rem;
+  font-weight: 500;
 }
 
-p.small {
-  font-size: 0.85rem !important;
+body p.small {
+  font-size: 0.85rem;
 }

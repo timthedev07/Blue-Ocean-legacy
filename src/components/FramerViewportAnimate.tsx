@@ -22,7 +22,7 @@ export const AnimateVisible: FC<AnimationProps & { className: string }> = ({
       ref={ref}
       animate={controls}
       initial="hidden"
-      transition={transition}
+      transition={transition || { duration: 0.3 }}
       variants={variants}
       className={className}
     >

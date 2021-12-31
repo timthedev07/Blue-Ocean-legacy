@@ -2,10 +2,11 @@ import { motion, useAnimation, AnimationProps } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FC, useEffect } from "react";
 
-export const AnimateVisible: FC<AnimationProps> = ({
+export const AnimateVisible: FC<AnimationProps & { className: string }> = ({
   children,
   variants,
   transition,
+  className,
 }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView();
@@ -23,6 +24,7 @@ export const AnimateVisible: FC<AnimationProps> = ({
       initial="hidden"
       transition={transition}
       variants={variants}
+      className={className}
     >
       {children}
     </motion.div>

@@ -76,7 +76,7 @@ const Home: NextPage = () => {
               },
             }}
           >
-            Our vision
+            {translation.visionHeading}
           </motion.h3>
           {showCover ? (
             <motion.ul

@@ -52,10 +52,7 @@ export const Layout: FC = ({ children }) => {
         <link rel="apple-touch-icon" href="/logo192.png" />
       </Head>
 
-      <div
-        id="App"
-        className="min-h-screen bg-slate-800 min-w-[350px] overflow-hidden"
-      >
+      <div id="App" className="min-h-screen bg-slate-800 min-w-[350px]">
         <Nav />
         {children}
       </div>

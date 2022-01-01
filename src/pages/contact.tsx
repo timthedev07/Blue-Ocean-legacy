@@ -10,8 +10,10 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { getStaggerVariants, listItemVariants } from "../utils/variants";
+import { useRouter } from "next/router";
+import { getTranslation } from "../utils/getTranslation";
+import { enContact, esContact, zhContact } from "../translations/contact";
 
 export interface ContactFormValues {
   name: string;
@@ -19,6 +21,19 @@ export interface ContactFormValues {
   phoneNumber?: string;
   message: string;
 }
+
+const pinVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 0.7,
+      ease: [0.6, -0.05, 0.01, 0.99],
+    },
+  },
+};
 
 const Contact: NextPage = () => {
   const formik = useFormik({
@@ -29,8 +44,6 @@ const Contact: NextPage = () => {
       message: "",
     } as ContactFormValues,
     onSubmit: async (formData) => {
-      // const { email, name } = formData;
-      console.log(formData);
       const response = await fetch("/api/contact", {
         body: JSON.stringify(formData),
         method: "POST",
@@ -40,6 +53,8 @@ const Contact: NextPage = () => {
       console.log(responseText);
     },
   });
+  const { locale } = useRouter();
+  const translation = getTranslation(locale, enContact, esContact, zhContact);
 
   return (
     <motion.div
@@ -48,10 +63,10 @@ const Contact: NextPage = () => {
       initial="initial"
       animate="animate"
     >
-      <Heading>Contact Us</Heading>
+      <Heading>{translation.heading}</Heading>
       <div className="rounded-lg border w-full h-60 p-5 bg-slate-900 flex justify-between">
         <div className="grow shrink basis-1">
-          <h3 className="font-semibold">Reach us via</h3>
+          <h3 className="font-semibold">{translation.subheading}</h3>
           <motion.ul className="pl-6" variants={getStaggerVariants(0.2)}>
             <motion.li className="flex gap-3 m-3" variants={listItemVariants}>
               <img className="w-6" src="/images/email.svg" alt="emailIcon" />
@@ -64,10 +79,11 @@ const Contact: NextPage = () => {
           </motion.ul>
         </div>
         <div className="h-full md:flex justify-end hidden md:justify-center items-center grow shrink basis-1">
-          <img
+          <motion.img
             src="/images/pin.svg"
             alt="pinIcon"
             className="w-24 h-24 md:w-32 md:h-32"
+            variants={pinVariants}
           />
         </div>
       </div>
@@ -80,7 +96,7 @@ const Contact: NextPage = () => {
             >
               <FormControl isRequired>
                 <FormLabel as="legend" htmlFor="contact-name">
-                  Your name
+                  {translation.labels.name}
                 </FormLabel>
                 <Input
                   id="contact-name"
@@ -95,7 +111,7 @@ const Contact: NextPage = () => {
               </FormControl>
               <FormControl isRequired>
                 <FormLabel as="legend" htmlFor="contact-email">
-                  Email
+                  {translation.labels.email}
                 </FormLabel>
                 <Input
                   id="contact-email"
@@ -111,7 +127,7 @@ const Contact: NextPage = () => {
               </FormControl>
               <FormControl>
                 <FormLabel as="legend" htmlFor="contact-phoneNumber">
-                  Phone number
+                  {translation.labels.phoneNumber}
                 </FormLabel>
                 <Input
                   className="border-black"
@@ -124,7 +140,7 @@ const Contact: NextPage = () => {
               </FormControl>
               <FormControl isRequired>
                 <FormLabel as="legend" htmlFor="contact-message">
-                  Message
+                  {translation.labels.message}
                 </FormLabel>
                 <Textarea
                   id="contact-message"
@@ -136,19 +152,31 @@ const Contact: NextPage = () => {
                   value={formik.values.message}
                 />
               </FormControl>
-              <Button type="submit">Submit</Button>
+              <Button type="submit">{translation.submit}</Button>
             </form>
           </Box>
         </div>
         <div className="grow shrink basis-0">
-          <iframe
+          <motion.iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6217.914351759194!2d-0.4487569153254044!3d38.40311527582633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6239aea5f80955%3A0x501aba76bd580f0b!2sCarrer%20la%20Melva%2C%2003540%20Alacant!5e1!3m2!1sen!2ses!4v1641047121756!5m2!1sen!2ses"
             width="100%"
             height="100%"
             className="border-none rounded-lg"
             allowFullScreen
             loading="lazy"
-          ></iframe>
+            variants={{
+              initial: {
+                scale: 0.01,
+              },
+              animate: {
+                scale: 1,
+                transition: {
+                  duration: 0.5,
+                  ease: [0.6, -0.05, 0.01, 0.99],
+                },
+              },
+            }}
+          ></motion.iframe>
         </div>
       </div>
     </motion.div>

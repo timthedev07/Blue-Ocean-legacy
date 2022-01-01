@@ -10,6 +10,8 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { getStaggerVariants, listItemVariants } from "../utils/variants";
 
 export interface ContactFormValues {
   name: string;
@@ -41,73 +43,113 @@ const Contact: NextPage = () => {
 
   return (
     <motion.div
-      className="flex w-full justify-center items-center"
+      className="flex w-full flex-col justify-center items-center gap-6 p-3 md:p-16"
       exit={{ opacity: 0 }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial="initial"
+      animate="animate"
     >
-      <div className="p-3 min-w-[20rem] max-w-sm w-full border rounded-lg mt-7">
-        <Box textAlign="center">
-          <Heading>Contact Us</Heading>
-        </Box>
-        <Box className="my-4 text-left">
-          <form onSubmit={formik.handleSubmit} className="flex flex-col gap-3">
-            <FormControl isRequired>
-              <FormLabel as="legend" htmlFor="contact-name">
-                Your name
-              </FormLabel>
-              <Input
-                id="contact-name"
-                className="border-black"
-                placeholder="John Doe"
-                required
-                value={formik.values.name}
-                name="name"
-                onChange={formik.handleChange}
-              />
-            </FormControl>
-            <FormControl isRequired>
-              <FormLabel as="legend" htmlFor="contact-email">
-                Email
-              </FormLabel>
-              <Input
-                id="contact-email"
-                className="border-black"
-                required
-                placeholder="google@gmail.com"
-                type="email"
-                value={formik.values.email}
-                name="email"
-                onChange={formik.handleChange}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel as="legend" htmlFor="contact-phoneNumber">
-                Phone number
-              </FormLabel>
-              <Input
-                className="border-black"
-                id="contact-phoneNumber"
-                name="phoneNumber"
-                onChange={formik.handleChange}
-                value={formik.values.phoneNumber}
-              />
-            </FormControl>
-            <FormControl isRequired>
-              <FormLabel as="legend" htmlFor="contact-message">
-                Message
-              </FormLabel>
-              <Textarea
-                id="contact-message"
-                className="border-black"
-                name="message"
-                onChange={formik.handleChange}
-                value={formik.values.message}
-              />
-            </FormControl>
-            <Button type="submit">Submit</Button>
-          </form>
-        </Box>
+      <Heading>Contact Us</Heading>
+      <div className="rounded-lg border w-full h-60 p-5 bg-slate-900 flex justify-between">
+        <div className="grow shrink basis-1">
+          <h3 className="font-semibold">Reach us via</h3>
+          <motion.ul className="pl-6" variants={getStaggerVariants(0.2)}>
+            <motion.li className="flex gap-3 m-3" variants={listItemVariants}>
+              <img className="w-6" src="/images/email.svg" alt="emailIcon" />
+              blueocean.co.official@gmail.com
+            </motion.li>
+            <motion.li className="flex gap-3 m-3" variants={listItemVariants}>
+              <img className="w-6" src="/images/phone.svg" alt="phoneIcon" />
+              643611778
+            </motion.li>
+          </motion.ul>
+        </div>
+        <div className="h-full md:flex justify-end hidden md:justify-center items-center grow shrink basis-1">
+          <img
+            src="/images/pin.svg"
+            alt="pinIcon"
+            className="w-24 h-24 md:w-32 md:h-32"
+          />
+        </div>
+      </div>
+      <div className="w-full h-full flex gap-8 flex-col-reverse md:flex-row">
+        <div className="p-6 min-w-[20rem] w-full border rounded-lg grow shrink basis-0 h-full bg-slate-900">
+          <Box className="my-4 text-left">
+            <form
+              onSubmit={formik.handleSubmit}
+              className="flex flex-col gap-3"
+            >
+              <FormControl isRequired>
+                <FormLabel as="legend" htmlFor="contact-name">
+                  Your name
+                </FormLabel>
+                <Input
+                  id="contact-name"
+                  className="border-black"
+                  placeholder="John Doe"
+                  required
+                  value={formik.values.name}
+                  name="name"
+                  variant="flushed"
+                  onChange={formik.handleChange}
+                />
+              </FormControl>
+              <FormControl isRequired>
+                <FormLabel as="legend" htmlFor="contact-email">
+                  Email
+                </FormLabel>
+                <Input
+                  id="contact-email"
+                  className="border-black"
+                  required
+                  placeholder="google@gmail.com"
+                  type="email"
+                  value={formik.values.email}
+                  variant="flushed"
+                  name="email"
+                  onChange={formik.handleChange}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel as="legend" htmlFor="contact-phoneNumber">
+                  Phone number
+                </FormLabel>
+                <Input
+                  className="border-black"
+                  id="contact-phoneNumber"
+                  name="phoneNumber"
+                  variant="flushed"
+                  onChange={formik.handleChange}
+                  value={formik.values.phoneNumber}
+                />
+              </FormControl>
+              <FormControl isRequired>
+                <FormLabel as="legend" htmlFor="contact-message">
+                  Message
+                </FormLabel>
+                <Textarea
+                  id="contact-message"
+                  className="border-black"
+                  name="message"
+                  onChange={formik.handleChange}
+                  variant="flushed"
+                  resize={"none"}
+                  value={formik.values.message}
+                />
+              </FormControl>
+              <Button type="submit">Submit</Button>
+            </form>
+          </Box>
+        </div>
+        <div className="grow shrink basis-0">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6217.914351759194!2d-0.4487569153254044!3d38.40311527582633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6239aea5f80955%3A0x501aba76bd580f0b!2sCarrer%20la%20Melva%2C%2003540%20Alacant!5e1!3m2!1sen!2ses!4v1641047121756!5m2!1sen!2ses"
+            width="100%"
+            height="100%"
+            className="border-none rounded-lg"
+            allowFullScreen
+            loading="lazy"
+          ></iframe>
+        </div>
       </div>
     </motion.div>
   );

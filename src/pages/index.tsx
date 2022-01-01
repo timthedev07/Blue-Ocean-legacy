@@ -7,6 +7,7 @@ import { getTranslation } from "../utils/getTranslation";
 import { AnimateVisible } from "../components/FramerViewportAnimate";
 import { useState } from "react";
 import Link from "next/link";
+import { listItemVariants, getStaggerVariants } from "../utils/variants";
 
 const start = {
   y: 100,
@@ -27,13 +28,6 @@ const fadeInHero = {
 const fadeIn = {
   hidden: start,
   visible: animate,
-};
-const stagger = {
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
 };
 
 const spotlightPicSize = "w-40 h-40";
@@ -83,32 +77,13 @@ const Home: NextPage = () => {
             <div className="flex flex-col justify-between h-full w-full">
               <motion.ul
                 className="pl-4 flex flex-col items-start"
-                variants={{
-                  animate: {
-                    transition: {
-                      staggerChildren: 0.2,
-                    },
-                  },
-                }}
+                variants={getStaggerVariants(0.2)}
               >
                 {translation.visions.map((each) => (
                   <motion.li
                     className="m-4 text-left"
                     key={each}
-                    variants={{
-                      initial: {
-                        x: "-50vw",
-                        opacity: 0,
-                      },
-                      animate: {
-                        x: 0,
-                        opacity: 1,
-                        transition: {
-                          duration: 1,
-                          ease: [0.6, -0.05, 0.01, 0.99],
-                        },
-                      },
-                    }}
+                    variants={listItemVariants}
                   >
                     {each}
                   </motion.li>
@@ -147,7 +122,7 @@ const Home: NextPage = () => {
       </div>
       <section>
         <AnimateVisible
-          variants={stagger}
+          variants={getStaggerVariants()}
           className="flex justify-around items-center w-[clamp(300px, 80%, 1200px)] bg-slate-400 bg-opacity-10 border rounded min-h-[400px] m-20 flex-col md:flex-row md:m-6"
         >
           <AnimateVisible variants={fadeIn} className={spotlightItem}>

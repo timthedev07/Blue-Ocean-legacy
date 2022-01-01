@@ -43,7 +43,7 @@ const Home: NextPage = () => {
   return (
     <motion.div exit={{ opacity: 0 }} initial="initial" animate="animate">
       {/* Hero */}
-      <div className="with-scroll-indicator flex flex-col items-center justify-center h-[550px] bg-cyan-600 text-center relative">
+      <div className="with-scroll-indicator flex flex-col items-center justify-start gap-4 md:gap-14 h-[550px] bg-cyan-600 text-center relative">
         <div
           className={`transition-all duration-700 ${
             showCover ? "left-0" : "-left-[100vw]"
@@ -110,6 +110,9 @@ const Home: NextPage = () => {
             setShowCover(false);
           }}
         />
+        <div className="w-full flex justify-end z-[41]">
+          <img src="/light-logo.png" alt="" className="w-60" />
+        </div>
         <motion.div
           className="flex flex-col justify-center items-center gap-3 h-min w-[80%] max-w-[1080px] z-10 bg-opacity-70 text-zinc-200 rounded-lg"
           variants={fadeInHero}

@@ -17,8 +17,8 @@ export const enIndex = {
 };
 
 export const zhIndex: IndexTranslationType = {
-  hero: "蓝海国际",
-  heroSubheading: "国际贸易公司",
+  hero: "蓝海国际贸易",
+  heroSubheading: "",
   spotlight: [
     "广泛的销售范围 - 从选购商品到便利工具，我们从世界各地带到你手里。",
     "我们给你提供从可靠的提供商进购高质量产品。",

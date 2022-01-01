@@ -28,26 +28,28 @@ export const Nav: FC<NavProps> = ({ className }) => {
     <nav
       className={
         className +
-        " w-full h-12 bg-slate-900 flex pl-10 items-center z-50 sticky top-0 px-4"
+        " w-full h-12 bg-slate-900 flex pl-10 items-center justify-center z-50 sticky top-0 px-4"
       }
     >
-      <Link href="/" passHref>
-        <img
-          src="/nav-logo.svg"
-          alt=""
-          className="h-[65%] w-auto cursor-pointer"
-        />
-      </Link>
-      <ul className="w-full max-w-6xl h-full flex justify-around items-center relative">
-        {NAV_LINKS.map(({ href, name }) => (
-          <Link key={name} href={href} passHref>
-            <li className="cursor-pointer text-neutral-400 transition duration-200 hover:text-slate-50">
-              {t[name]}
-            </li>
-          </Link>
-        ))}
-      </ul>
-      <LanguageToggle className="" />
+      <div className="max-w-6xl flex justify-center items-center h-full w-full">
+        <Link href="/" passHref>
+          <img
+            src="/nav-logo.svg"
+            alt=""
+            className="h-[65%] w-auto cursor-pointer"
+          />
+        </Link>
+        <ul className="w-full h-full flex justify-around items-center relative">
+          {NAV_LINKS.map(({ href, name }) => (
+            <Link key={name} href={href} passHref>
+              <li className="cursor-pointer text-neutral-400 transition duration-200 hover:text-slate-50">
+                {t[name]}
+              </li>
+            </Link>
+          ))}
+        </ul>
+        <LanguageToggle className="" />
+      </div>
     </nav>
   );
 };

@@ -15,7 +15,7 @@ export const listItemVariants = {
 
 export const getStaggerVariants = (diff: number = 0.15) => {
   return {
-    visible: {
+    animate: {
       transition: {
         staggerChildren: diff,
       },

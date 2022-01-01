@@ -7,7 +7,7 @@ import { getTranslation } from "../utils/getTranslation";
 import { AnimateVisible } from "../components/FramerViewportAnimate";
 import { useState } from "react";
 import Link from "next/link";
-import { listItemVariants, getStaggerVariants } from "../utils/variants";
+import { getStaggerVariants, listItemVariants } from "../utils/variants";
 
 const start = {
   y: 100,
@@ -121,10 +121,7 @@ const Home: NextPage = () => {
         </motion.div>
       </div>
       <section>
-        <AnimateVisible
-          variants={getStaggerVariants()}
-          className="flex justify-around items-center w-[clamp(300px, 80%, 1200px)] bg-slate-400 bg-opacity-10 border rounded min-h-[400px] m-20 flex-col md:flex-row md:m-6"
-        >
+        <AnimateVisible className="flex justify-around items-center w-[clamp(300px, 80%, 1200px)] bg-slate-400 bg-opacity-10 border rounded min-h-[400px] m-20 flex-col md:flex-row md:m-6">
           <AnimateVisible variants={fadeIn} className={spotlightItem}>
             <img
               src="/images/landing/product.svg"

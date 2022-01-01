@@ -1,4 +1,4 @@
-type Translation = Record<string, string | string[]>;
+type Translation = Record<string, string | string[] | Record<string, string>>;
 
 export const getTranslation = <T extends Translation>(
   locale: string | undefined,

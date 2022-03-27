@@ -26,7 +26,7 @@ export const zhContact: ContactTranslationType = {
 
 export const esContact: ContactTranslationType = {
   heading: "Contactarnos",
-  subheading: "A través de",
+  subheading: "Por",
   labels: {
     name: "Nombre",
     email: "Email",

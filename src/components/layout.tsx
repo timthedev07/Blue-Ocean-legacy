@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Head from "next/head";
 import { Nav } from "./navigation/Nav";
+import { Footer } from "./Footer";
 
 export const metadata = {
   title: "Blue Ocean",
@@ -52,10 +53,11 @@ export const Layout: FC = ({ children }) => {
         <link rel="apple-touch-icon" href="/logo192.png" />
       </Head>
 
-      <div id="App" className="min-h-screen bg-slate-800 min-w-[450px]">
+      <div id="App" className="bg-slate-800 min-w-[450px] relative">
         <Nav />
         {children}
       </div>
+      <Footer />
     </>
   );
 };

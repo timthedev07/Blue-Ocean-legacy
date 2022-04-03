@@ -4,9 +4,10 @@ import { MobileNavTrigger } from "./MobileNavTrigger";
 
 interface MobileNav {
   className?: string;
+  isSmallMobile: boolean;
 }
 
-export const MobileNav: FC<MobileNav> = ({ className = "" }) => {
+export const MobileNav: FC<MobileNav> = ({ className = "", isSmallMobile }) => {
   const disclosure = useState<boolean>(false);
 
   return (
@@ -17,7 +18,7 @@ export const MobileNav: FC<MobileNav> = ({ className = "" }) => {
       }
     >
       <MobileNavTrigger disclosure={disclosure} />
-      <MobileNavList disclosure={disclosure} />
+      <MobileNavList isSmallMobile={isSmallMobile} disclosure={disclosure} />
     </div>
   );
 };

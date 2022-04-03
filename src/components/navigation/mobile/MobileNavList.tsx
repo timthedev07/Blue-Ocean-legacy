@@ -9,6 +9,7 @@ import { NavDisclosure } from "./MobileNavTrigger";
 
 interface MobileNavListProps {
   disclosure: NavDisclosure;
+  isSmallMobile: boolean;
 }
 
 export const MobileNavList: FC<MobileNavListProps> = ({

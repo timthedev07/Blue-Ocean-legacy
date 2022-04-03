@@ -12,15 +12,18 @@ export const metadata = {
 };
 
 const MOBILE_THRESHOLD = 820;
+const SMALL_MOBILE_THRESHOLD = 450;
 
 export const Layout: FC = ({ children }) => {
   const [isMobile, setIsMobile] = useState<boolean>(true);
+  const [isSmallMobile, setIsSmallMobile] = useState<boolean>(true);
 
   useEffect(() => {
     setIsMobile(window.innerWidth <= MOBILE_THRESHOLD);
+    setIsSmallMobile(window.innerWidth <= SMALL_MOBILE_THRESHOLD);
     const resizeHandler = () => {
       setIsMobile(window.innerWidth <= MOBILE_THRESHOLD);
-      console.log(window.innerWidth <= MOBILE_THRESHOLD);
+      setIsSmallMobile(window.innerWidth <= SMALL_MOBILE_THRESHOLD);
     };
     window.addEventListener("resize", resizeHandler);
 
@@ -57,7 +60,7 @@ export const Layout: FC = ({ children }) => {
       </Head>
 
       <div id="App" className="bg-slate-800 min-w-[450px] relative">
-        {!isMobile ? <Nav /> : <MobileNav />}
+        {!isMobile ? <Nav /> : <MobileNav isSmallMobile={isSmallMobile} />}
         <div className="min-h-screen">{children}</div>
       </div>
       <Footer />

@@ -45,8 +45,8 @@ const Home: NextPage = () => {
       {/* Hero */}
       <div className="with-scroll-indicator flex flex-col items-center justify-start gap-4 md:gap-14 h-[550px] bg-cyan-700 text-center relative">
         <div
-          className={`transition-all duration-700 ${
-            showCover ? "left-0" : "-left-[1000vw]"
+          className={`transition-transform duration-1000 transform-gpu ${
+            showCover ? "translate-x-0" : "-translate-x-[1000vw]"
           } w-full h-full bg-neutral-900 bg-opacity-80 absolute p-9 flex flex-col items-start z-40`}
           onMouseEnter={() => {
             setShowCover(true);

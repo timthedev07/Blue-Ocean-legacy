@@ -38,7 +38,7 @@ const BurgerIcon = ({ onClick }: { onClick?: Function }) => {
 };
 
 export const MobileNavTrigger: FC<MobileNavTriggerProps> = ({
-  disclosure: [open, setOpen],
+  disclosure: [_, setOpen],
 }) => {
   return (
     <div className="z-[9999]">

@@ -7,7 +7,7 @@ interface SidebarElementProps {
   href: string;
 }
 
-export const SidebarElement: FC<SidebarElementProps> = ({
+export const MobileNavElement: FC<SidebarElementProps> = ({
   name,
   href,
   icon,

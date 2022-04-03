@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import Head from "next/head";
 import { Nav } from "./navigation/Nav";
 import { Footer } from "./Footer";
-import { Sidebar } from "./navigation/sidebar";
+import { MobileNav } from "./navigation/mobile";
 
 export const metadata = {
   title: "Blue Ocean",
@@ -57,7 +57,7 @@ export const Layout: FC = ({ children }) => {
       </Head>
 
       <div id="App" className="bg-slate-800 min-w-[450px] relative">
-        {!isMobile ? <Nav /> : <Sidebar />}
+        {!isMobile ? <Nav /> : <MobileNav />}
         <div className="min-h-screen">{children}</div>
       </div>
       <Footer />

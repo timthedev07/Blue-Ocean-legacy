@@ -1,10 +1,10 @@
 import { FC } from "react";
 
-interface Sidebar {
+interface MobileNav {
   className?: string;
 }
 
-export const Sidebar: FC<Sidebar> = ({ className = "" }) => {
+export const MobileNav: FC<MobileNav> = ({ className = "" }) => {
   return (
     <div
       className={

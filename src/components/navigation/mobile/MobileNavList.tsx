@@ -27,7 +27,7 @@ export const MobileNavList: FC<MobileNavListProps> = ({
         } pt-20 z-[9998] transition-all duration-500 h-screen absolute top-0 bottom-0 bg-slate-900 filter brightness-[1.2] ${
           isSmallMobile
             ? !open
-              ? "-top-[100vh] left-0"
+              ? "-top-[1000000vh] left-0"
               : "top-0 left-0"
             : !open
             ? "-left-[100%]"
@@ -49,6 +49,7 @@ export const MobileNavList: FC<MobileNavListProps> = ({
             key={each.name}
             name={t[each.name]}
             href={each.href}
+            isSmallMobile={isSmallMobile}
             onClick={() => {
               setOpen(false);
             }}

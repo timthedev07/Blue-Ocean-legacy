@@ -4,7 +4,7 @@ export const enIndex = {
   hero: "Blue Ocean International Trade",
   heroSubheading: "An International Trading Business",
   spotlight: [
-    "Wide range of products - From shopping goods to convenient tools, we bring them to you from anywhere in the world.",
+    "A wide range of products - From shopping goods to convenient tools, we bring them to you from anywhere in the world.",
     "We provide you with high-quality products from reliable suppliers.",
     "We are seeking to build a global reputation and offer our products to more customers.",
   ],

@@ -55,7 +55,7 @@ export const Layout: FC = ({ children }) => {
 
       <div id="App" className="bg-slate-800 min-w-[450px] relative">
         <Nav />
-        {children}
+        <div className="min-h-screen">{children}</div>
       </div>
       <Footer />
     </>

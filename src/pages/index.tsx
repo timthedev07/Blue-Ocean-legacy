@@ -43,7 +43,7 @@ const Home: NextPage = () => {
   return (
     <motion.div exit={{ opacity: 0 }} initial="initial" animate="animate">
       {/* Hero */}
-      <div className="with-scroll-indicator flex flex-col items-center justify-start gap-4 md:gap-14 h-[550px] bg-cyan-600 text-center relative">
+      <div className="with-scroll-indicator flex flex-col items-center justify-start gap-4 md:gap-14 h-[550px] bg-cyan-700 text-center relative">
         <div
           className={`transition-all duration-700 ${
             showCover ? "left-0" : "-left-[100vw]"
@@ -91,7 +91,7 @@ const Home: NextPage = () => {
               </motion.ul>
               <div className="w-full">
                 <Link href="/about" passHref>
-                  <button className=" p-3 px-6 bg-sky-600 rounded-md uppercase transition duration-200 hover:bg-sky-500">
+                  <button className=" p-3 px-6 bg-sky-600 rounded-md uppercase transition duration-200 hover:bg-sky-600">
                     Learn more
                   </button>
                 </Link>
@@ -102,7 +102,7 @@ const Home: NextPage = () => {
           )}
         </div>
         <div
-          className="absolute z-0 w-full h-full object-cover object-center brightness-90 bg-sky-500"
+          className="absolute z-0 w-full h-full object-cover object-center brightness-90 bg-cyan-600"
           onMouseEnter={() => {
             setShowCover(true);
           }}

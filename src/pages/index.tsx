@@ -123,7 +123,7 @@ const Home: NextPage = () => {
           <span>{translation.heroSubheading}</span>
         </motion.div>
       </div>
-      <section className="p-3 md:p-7">
+      <section className="p-5 md:p-8">
         <AnimateVisible className="flex justify-around items-center w-[clamp(300px, 80%, 1200px)] bg-slate-400 bg-opacity-10 border rounded min-h-[400px] flex-col md:flex-row">
           <AnimateVisible variants={fadeIn} className={spotlightItem}>
             <img

@@ -18,7 +18,7 @@ export const MobileNavElement: FC<SidebarElementProps> = ({
         onClick={() => {
           if (onClick) onClick();
         }}
-        className="cursor-pointer w-auto px-4 py-3 capitalize transition-all duration-150 bg-neutral-200 bg-opacity-0 hover:bg-opacity-30"
+        className="cursor-pointer w-auto px-4 py-3 capitalize transition-all duration-150 bg-neutral-200 bg-opacity-0 hover:bg-opacity-30 select-none"
       >
         {name}
       </div>

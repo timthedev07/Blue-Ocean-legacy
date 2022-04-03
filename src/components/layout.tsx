@@ -12,7 +12,7 @@ export const metadata = {
 };
 
 const MOBILE_THRESHOLD = 820;
-const SMALL_MOBILE_THRESHOLD = 450;
+const SMALL_MOBILE_THRESHOLD = 750;
 
 export const Layout: FC = ({ children }) => {
   const [isMobile, setIsMobile] = useState<boolean>(true);

@@ -1,7 +1,8 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import Head from "next/head";
 import { Nav } from "./navigation/Nav";
 import { Footer } from "./Footer";
+import { Sidebar } from "./navigation/sidebar";
 
 export const metadata = {
   title: "Blue Ocean",
@@ -10,21 +11,23 @@ export const metadata = {
   domain: "https://something.com",
 };
 
+const MOBILE_THRESHOLD = 820;
+
 export const Layout: FC = ({ children }) => {
-  // Uncomment this part to switch between desktop & mobile nav
-  // const [windowSize, setWindowSize] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState<boolean>(true);
 
-  // useEffect(() => {
-  //   setWindowSize(window.innerWidth);
-  //   const resizeHandler = () => {
-  //     setWindowSize(window.innerWidth);
-  //   };
-  //   window.addEventListener("resize", resizeHandler);
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= MOBILE_THRESHOLD);
+    const resizeHandler = () => {
+      setIsMobile(window.innerWidth <= MOBILE_THRESHOLD);
+      console.log(window.innerWidth <= MOBILE_THRESHOLD);
+    };
+    window.addEventListener("resize", resizeHandler);
 
-  //   return () => {
-  //     window.removeEventListener("resize", resizeHandler);
-  //   };
-  // }, []);
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+    };
+  }, []);
 
   return (
     <>
@@ -54,7 +57,7 @@ export const Layout: FC = ({ children }) => {
       </Head>
 
       <div id="App" className="bg-slate-800 min-w-[450px] relative">
-        <Nav />
+        {!isMobile ? <Nav /> : <Sidebar />}
         <div className="min-h-screen">{children}</div>
       </div>
       <Footer />

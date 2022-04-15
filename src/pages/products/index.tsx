@@ -12,7 +12,7 @@ const Products: NextPage = () => {
       {productsData.map((each) => (
         <Product
           key={each.id}
-          infoPageUrl={`/products/${each.id}`}
+          id={each.id}
           name={getSingleTranslation(
             locale,
             each.name.en,

@@ -15,7 +15,8 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const { slug } = params!;
+  const { id } = params!;
+  console.log(id);
 
   return {
     props: {

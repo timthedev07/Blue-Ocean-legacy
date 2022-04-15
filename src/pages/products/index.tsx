@@ -9,13 +9,13 @@ const Products: NextPage = () => {
 
   return (
     <>
-      <header className="relative flex">
+      <header className="relative flex justify-center items-center">
         <img
           src="/images/k.jpeg"
           alt=""
-          className="w-full object-cover h-[400px]"
+          className="w-full object-cover h-64 brightness-[0.3]"
         />
-        <h3 className="absolute ">Open the gates to convenience</h3>
+        <h2 className="absolute font-sans font-semibold">PRODUCTS</h2>
       </header>
       <div className="p-14">
         {productsData.map((each) => (

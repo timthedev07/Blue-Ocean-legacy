@@ -2,10 +2,19 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { Product } from "../../components/Product";
 import { productsData } from "../../products";
-import { getSingleTranslation } from "../../utils/getTranslation";
+import {
+  enProducts,
+  esProducts,
+  zhProducts,
+} from "../../translations/products";
+import {
+  getSingleTranslation,
+  getTranslation,
+} from "../../utils/getTranslation";
 
 const Products: NextPage = () => {
   const { locale } = useRouter();
+  const t = getTranslation(locale, enProducts, esProducts, zhProducts);
 
   return (
     <>
@@ -15,7 +24,9 @@ const Products: NextPage = () => {
           alt=""
           className="w-full object-cover h-64 brightness-[0.3]"
         />
-        <h2 className="absolute font-sans font-semibold">PRODUCTS</h2>
+        <h2 className="absolute font-sans font-semibold uppercase">
+          {t.header}
+        </h2>
       </header>
       <div className="p-14">
         {productsData.map((each) => (

@@ -14,5 +14,6 @@ export const chopTextForUI = (text: string, i: number = 18) => {
  */
 export const chopWordForUI = (text: string, i: number = 5) => {
   const words = text.split(" ");
-  return words.slice(0, i).join(" ") + "...";
+  const remaining = words.slice(0, i);
+  return remaining.join(" ") + (remaining.length !== words.length ? "..." : "");
 };

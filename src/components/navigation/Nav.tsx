@@ -4,6 +4,7 @@ import { FC } from "react";
 import { enNav, esNav, zhNav } from "../../translations/components/Nav";
 import { getTranslation } from "../../utils/getTranslation";
 import { LanguageToggle } from "../LanguageToggle";
+import { NavLogo } from "./NavLogo";
 
 interface NavProps {
   className?: string;
@@ -33,11 +34,7 @@ export const Nav: FC<NavProps> = ({ className }) => {
     >
       <div className="max-w-6xl flex justify-center items-center h-full w-full">
         <Link href="/" passHref>
-          <img
-            src="/nav-logo.svg"
-            alt=""
-            className="h-[65%] w-auto cursor-pointer"
-          />
+          <NavLogo className="h-[85%] w-auto cursor-pointer" />
         </Link>
         <ul className="w-full h-full flex justify-around items-center relative">
           {NAV_LINKS.map(({ href, name }) => (

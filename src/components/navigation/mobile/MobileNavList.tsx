@@ -4,6 +4,7 @@ import { FC } from "react";
 import { enNav, esNav, zhNav } from "../../../translations/components/Nav";
 import { getTranslation } from "../../../utils/getTranslation";
 import { NAV_LINKS } from "../Nav";
+import { NavLogo } from "../NavLogo";
 import { MobileNavElement } from "./MobileNavElement";
 import { NavDisclosure } from "./MobileNavTrigger";
 
@@ -35,9 +36,7 @@ export const MobileNavList: FC<MobileNavListProps> = ({
         }`}
       >
         <Link href="/" passHref>
-          <img
-            src="/nav-logo.svg"
-            alt=""
+          <NavLogo
             onClick={() => {
               setOpen(false);
             }}

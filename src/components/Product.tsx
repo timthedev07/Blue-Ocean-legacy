@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FC } from "react";
 import { chopWordForUI } from "../utils/chopTextForUI";
-import { AdvancedImage, placeholder, lazyload } from "@cloudinary/react";
+import { AdvancedImage, placeholder } from "@cloudinary/react";
 import { cloudinaryInstance } from "../Cloudinary";
 
 interface ProductProps {
@@ -12,7 +12,7 @@ interface ProductProps {
 
 export const Product: FC<ProductProps> = ({ name, price, id }) => {
   const photoUrl = "";
-  const cldImage = cloudinaryInstance.image("");
+  const cldImage = cloudinaryInstance.image(`/products/${id}/thumbnail`);
 
   return (
     <Link href={`/products/${id}`} passHref>
@@ -22,6 +22,7 @@ export const Product: FC<ProductProps> = ({ name, price, id }) => {
           src={photoUrl}
           className="w-auto rounded-t-md"
           alt={name}
+          plugins={[placeholder({ mode: "blur" })]}
         />
         <div className="px-4 py-2 pt-3">
           <span className="text-xl">{chopWordForUI(name, 6)}</span>

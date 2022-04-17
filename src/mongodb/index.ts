@@ -1,5 +1,6 @@
 import * as mongoDB from "mongodb";
-export const collections: { productReviews?: mongoDB.Collection } = {};
+import { Review } from "./models/review";
+export const collections: { productReviews?: mongoDB.Collection<Review> } = {};
 
 export const connectDB = async () => {
   const client: mongoDB.MongoClient = new mongoDB.MongoClient(
@@ -14,7 +15,7 @@ export const connectDB = async () => {
     process.env.DB_COLLECTION_NAME
   );
 
-  collections.productReviews = productReviewsCollection;
+  collections.productReviews = productReviewsCollection as any;
 
   console.log(
     `Access to collection "${productReviewsCollection.collectionName}" granted.`

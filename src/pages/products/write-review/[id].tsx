@@ -7,27 +7,35 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
+import {
+  enWriteReview,
+  esWriteReview,
+  zhWriteReview,
+} from "../../../translations/write-review";
+import { getTranslation } from "../../../utils/getTranslation";
 import { newReviewSchema } from "../../../utils/yupSchemas";
 
 const WriteReview: NextPage = () => {
+  const { locale, query } = useRouter();
+
   const formik = useFormik({
     initialValues: {
-      name: "",
-      email: "",
-      phoneNumber: "",
-      message: "",
+      authorName: "",
+      review: "",
+      rating: 0,
     },
     validationSchema: newReviewSchema,
     onSubmit: async (formData) => {
-      const response = await fetch("/api/contact", {
-        body: JSON.stringify(formData),
+      const response = await fetch("/api/reviews/newReview", {
+        body: JSON.stringify({ ...formData, productId: query.id }),
         method: "POST",
       });
 
       const responseText = await response.text();
-      console.log(responseText);
     },
   });
+  const t = getTranslation(locale, enWriteReview, esWriteReview, zhWriteReview);
 
   return (
     <>
@@ -36,23 +44,22 @@ const WriteReview: NextPage = () => {
         className="flex flex-col gap-3 w-72 border rounded-lg p-6"
       >
         <FormControl isRequired>
-          <FormLabel as="legend" htmlFor="contact-name">
-            {/* {translation.labels.name} */}
+          <FormLabel as="legend" htmlFor="author-name">
+            {t.authorName}
           </FormLabel>
           <Input
-            id="contact-name"
+            id="author-name"
             className="border-black"
-            placeholder="John Doe"
             required
-            value={formik.values.name}
+            value={formik.values.authorName}
             name="name"
             variant="flushed"
             onChange={formik.handleChange}
           />
         </FormControl>
         <FormControl isRequired>
-          <FormLabel as="legend" htmlFor="contact-email">
-            {/* {translation.labels.email} */}
+          <FormLabel as="legend" htmlFor="rating">
+            {t.rating}
           </FormLabel>
           <Input
             id="contact-email"
@@ -60,28 +67,16 @@ const WriteReview: NextPage = () => {
             required
             placeholder="google@gmail.com"
             type="email"
-            value={formik.values.email}
+            value={formik.values.rating}
             variant="flushed"
             name="email"
             onChange={formik.handleChange}
           />
         </FormControl>
-        <FormControl>
-          <FormLabel as="legend" htmlFor="contact-phoneNumber">
-            {/* {translation.labels.phoneNumber} */}
-          </FormLabel>
-          <Input
-            className="border-black"
-            id="contact-phoneNumber"
-            name="phoneNumber"
-            variant="flushed"
-            onChange={formik.handleChange}
-            value={formik.values.phoneNumber}
-          />
-        </FormControl>
+
         <FormControl isRequired>
           <FormLabel as="legend" htmlFor="contact-message">
-            {/* {translation.labels.message} */}
+            {t.review}
           </FormLabel>
           <Textarea
             id="contact-message"
@@ -90,10 +85,10 @@ const WriteReview: NextPage = () => {
             onChange={formik.handleChange}
             variant="flushed"
             resize={"none"}
-            value={formik.values.message}
+            value={formik.values.review}
           />
         </FormControl>
-        {/* <Button type="submit">{translation.submit}</Button> */}
+        <Button type="submit">{t.submit}</Button>
       </form>
     </>
   );

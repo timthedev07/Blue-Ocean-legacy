@@ -39,7 +39,6 @@ export const LazyCldImage: FC<
       const { isIntersecting } = entries[0];
 
       if (isIntersecting) {
-        // is in view
         observer.disconnect();
       }
 
@@ -76,7 +75,7 @@ export const LazyCldImage: FC<
           `
         }
       />
-      {!isInView ? (
+      {isInView ? (
         <img
           {...props}
           src={src}

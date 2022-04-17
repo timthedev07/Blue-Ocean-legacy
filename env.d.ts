@@ -5,6 +5,9 @@ declare global {
       EMAIL_PASSWORD: string;
       CLOUDINARY_API_KEY: string;
       CLOUDINARY_API_SECRET: string;
+      DB_CONN_STRING: string;
+      DB_NAME: string;
+      GAMES_COLLECTION_NAME: string;
     }
   }
 }

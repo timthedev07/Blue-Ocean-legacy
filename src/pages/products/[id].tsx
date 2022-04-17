@@ -1,14 +1,18 @@
 import { NextPage, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { LazyImage } from "../../components/LazyImage";
+import { RatingDisplay } from "../../components/RatingDisplay";
 import { productsData } from "../../products";
 import { getSingleTranslationObj } from "../../utils/getTranslation";
+import { getRating } from "../api/reviews/average/[productId]";
 
-const ProductDetails: NextPage<{ product: typeof productsData[0] }> = ({
-  product,
-}) => {
+interface ProductDetailsProps {
+  product: typeof productsData[0];
+  rating: number;
+}
+
+const ProductDetails: NextPage<ProductDetailsProps> = ({ product, rating }) => {
   const { locale } = useRouter();
-  locale;
 
   const spacer = <div className="h-full flex-1 md:flex-grow flex-grow-0"></div>;
 
@@ -27,6 +31,7 @@ const ProductDetails: NextPage<{ product: typeof productsData[0] }> = ({
           <h4 className="font-bold">
             {getSingleTranslationObj(locale, product.name)}
           </h4>
+          <RatingDisplay rating={rating} />
           <span className="text-emerald-400">{product.price}€</span>
           <div>{getSingleTranslationObj(locale, product.description)}</div>
         </div>
@@ -43,18 +48,30 @@ export async function getStaticPaths() {
         id: each.id,
       },
     })),
-    fallback: true,
+    fallback: "blocking",
   };
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps<ProductDetailsProps> = async ({
+  params,
+}) => {
   const { id } = params!;
+  const product = productsData.find((v) => {
+    return v.id == id;
+  });
+
+  if (!product) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const rating = await getRating(product.id);
 
   return {
     props: {
-      product: productsData.find((v) => {
-        return v.id == id;
-      }),
+      product,
+      rating,
     },
   };
 };

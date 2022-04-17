@@ -2,6 +2,12 @@ import { NextApiHandler } from "next";
 import { collections, connectDB } from "../../../../mongodb";
 
 export const getRating = async (productId: string) => {
+  await connectDB();
+
+  if (!collections.productReviews) {
+    throw 503;
+  }
+
   const reviews = await collections
     .productReviews!.find({
       productId,
@@ -26,14 +32,11 @@ const handler: NextApiHandler = async (req, res) => {
 
   const productId = req.query.productId as string;
 
-  await connectDB();
-
-  if (!collections.productReviews) {
-    res.status(503).end();
-    return;
+  try {
+    const rating = await getRating(productId);
+    res.status(200).send(rating);
+  } catch (errStatusCode) {
+    res.status(errStatusCode as number).end();
   }
-
-  const rating = await getRating(productId);
-  res.status(200).send(rating);
 };
 export default handler;

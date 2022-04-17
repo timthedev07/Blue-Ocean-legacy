@@ -3,6 +3,20 @@
 @tailwind utilities;
 @import url(./scroll-indicator.module.css);
 
+@layer utilities {
+  .lazy-image-helper {
+    content: "";
+    animation-fill-mode: forwards;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.13) 0%,
+      rgba(255, 255, 255, 0.13) 77%,
+      rgba(255, 255, 255, 0.5) 92%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+}
+
 body h1 {
   font-size: 4rem;
 }

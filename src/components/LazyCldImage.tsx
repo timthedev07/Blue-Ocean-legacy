@@ -52,7 +52,9 @@ export const LazyCldImage: FC<
   return (
     <div
       ref={root}
-      className={isLoading ? containerDimensions + " " + containerStyles : ""}
+      className={
+        isLoading ? containerDimensions + " " + containerStyles : className
+      }
     >
       <div
         className={
@@ -78,6 +80,7 @@ export const LazyCldImage: FC<
       {isInView ? (
         <img
           {...props}
+          className={className}
           src={src}
           alt={alt}
           onLoad={() => {

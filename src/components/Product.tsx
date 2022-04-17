@@ -19,8 +19,8 @@ export const Product: FC<ProductProps> = ({ name, price, id }) => {
       <div className="w-60 border border-neutral-300 border-opacity-10 rounded-md bg-slate-900/30 cursor-pointer transition-all duration-150 hover:bg-slate-800/40 hover:shadow-2xl transform hover:-translate-y-[1.5px]">
         <LazyCldImage
           src={thumbnailURL}
+          className="rounded-t-md"
           whileLoading={{
-            containerStyles: "rounded-t-md",
             placeholderStyles: "rounded-t-md",
           }}
           alt={name}

@@ -7,7 +7,7 @@ declare global {
       CLOUDINARY_API_SECRET: string;
       DB_CONN_STRING: string;
       DB_NAME: string;
-      GAMES_COLLECTION_NAME: string;
+      DB_COLLECTION_NAME: string;
     }
   }
 }

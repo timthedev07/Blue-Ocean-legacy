@@ -1,13 +1,6 @@
 import { NextApiHandler } from "next";
-import { number, object, string } from "yup";
 import { collections, connectDB } from "../../../mongodb";
-
-export const newReviewSchema = object({
-  authorName: string().required(),
-  productId: string().required(),
-  rating: number().required().integer().max(5).min(1),
-  review: string().required().max(250),
-});
+import { newReviewSchema } from "../../../utils/yupSchemas";
 
 const handler: NextApiHandler = async (req, res) => {
   if (req.method?.toLowerCase() !== "post") {

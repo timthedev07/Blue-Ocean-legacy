@@ -29,7 +29,7 @@ export const Nav: FC<NavProps> = ({ className }) => {
     <nav
       className={
         className +
-        " w-full h-14 bg-slate-900 flex pl-10 items-center justify-center z-50 sticky top-0 px-4"
+        " w-full h-12 bg-slate-900 flex pl-10 items-center justify-center z-50 sticky top-0 px-4"
       }
     >
       <div className="max-w-6xl flex justify-center items-center h-full w-full">
@@ -39,7 +39,7 @@ export const Nav: FC<NavProps> = ({ className }) => {
         <ul className="w-full h-full flex justify-around items-center relative">
           {NAV_LINKS.map(({ href, name }) => (
             <Link key={name} href={href} passHref>
-              <li className="cursor-pointer text-neutral-400 transition duration-200 hover:text-slate-50">
+              <li className="cursor-pointer text-neutral-400 text-sm transition duration-200 hover:text-slate-50">
                 {t[name]}
               </li>
             </Link>

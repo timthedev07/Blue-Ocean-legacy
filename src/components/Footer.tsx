@@ -53,9 +53,9 @@ export const Footer: FC = ({}) => {
             />
           </ul>
         </article>
-        <article className="flex-1 flex justify-center items-center">
-          <Fb />
-          <Twitter />
+        <article className="flex-1 flex justify-center items-center gap-8">
+          <Twitter className="w-10" />
+          <Fb className="w-10" />
         </article>
       </div>
       <hr className="w-[90%] m-auto bg-slate-500" />

@@ -14,6 +14,7 @@ import { getStaggerVariants, listItemVariants } from "../utils/variants";
 import { useRouter } from "next/router";
 import { getTranslation } from "../utils/getTranslation";
 import { enContact, esContact, zhContact } from "../translations/contact";
+import { toast } from "react-hot-toast";
 
 export interface ContactFormValues {
   name: string;
@@ -49,8 +50,14 @@ const Contact: NextPage = () => {
         method: "POST",
       });
 
-      const responseText = await response.text();
-      console.log(responseText);
+      const responseText = (await response.json()).message;
+      toast.success(responseText, {
+        style: {
+          background: "#0f172a",
+          color: "#fff",
+        },
+        duration: 5000,
+      });
     },
   });
   const { locale } = useRouter();

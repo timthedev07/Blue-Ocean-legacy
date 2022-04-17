@@ -3,7 +3,9 @@ import { collections, connectDB } from "../../../mongodb";
 import { Review } from "../../../mongodb/models/review";
 
 const handler: NextApiHandler = async (req, res) => {
-  if (req.method?.toLowerCase() !== "get") return;
+  if (req.method?.toLowerCase() !== "get") {
+    res.status(405).end();
+  }
 
   const productId = req.query.productId as string;
 

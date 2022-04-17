@@ -29,7 +29,7 @@ export const Nav: FC<NavProps> = ({ className }) => {
     <nav
       className={
         className +
-        " w-full h-12 bg-slate-900 flex pl-10 items-center justify-center z-50 sticky top-0 px-4"
+        " w-full h-14 bg-slate-900 flex pl-10 items-center justify-center z-50 sticky top-0 px-4"
       }
     >
       <div className="max-w-6xl flex justify-center items-center h-full w-full">

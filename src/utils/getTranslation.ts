@@ -31,3 +31,22 @@ export const getSingleTranslation = (
       return en;
   }
 };
+
+interface TranslationsObj {
+  en: string;
+  es: string;
+  zh: string;
+}
+export const getSingleTranslationObj = (
+  locale: string | undefined,
+  translations: TranslationsObj
+) => {
+  switch (locale) {
+    case "es-ES":
+      return translations.es;
+    case "zh-CN":
+      return translations.zh;
+    default:
+      return translations.en;
+  }
+};

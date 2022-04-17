@@ -10,7 +10,7 @@ const handler: NextApiHandler = async (req, res) => {
   await connectDB();
 
   if (!collections.productReviews) {
-    res.status(500).end();
+    res.status(503).end();
     return;
   }
 

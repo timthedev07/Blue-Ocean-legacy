@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Nav } from "./navigation/Nav";
 import { Footer } from "./Footer";
 import { MobileNav } from "./navigation/mobile";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "Blue Ocean",
@@ -59,6 +60,7 @@ export const Layout: FC = ({ children }) => {
         <link rel="apple-touch-icon" href="/logo192.png" />
       </Head>
 
+      <Toaster />
       <div id="App" className="bg-slate-800 min-w-[450px] relative">
         {!isMobile ? <Nav /> : <MobileNav isSmallMobile={isSmallMobile} />}
         <div className="min-h-screen">{children}</div>

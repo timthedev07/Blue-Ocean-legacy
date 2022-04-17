@@ -1,6 +1,24 @@
 import { NextApiHandler } from "next";
 import { collections, connectDB } from "../../../../mongodb";
 
+export const getRating = async (productId: string) => {
+  const reviews = await collections
+    .productReviews!.find({
+      productId,
+    })
+    .toArray();
+
+  return (
+    Math.round(
+      (reviews.reduce((prevTotal, curr) => {
+        return prevTotal + curr.rating;
+      }, 0) /
+        reviews.length) *
+        2
+    ) / 2
+  );
+};
+
 const handler: NextApiHandler = async (req, res) => {
   if (req.method?.toLowerCase() !== "get") {
     res.status(405).end();
@@ -15,20 +33,7 @@ const handler: NextApiHandler = async (req, res) => {
     return;
   }
 
-  const reviews = await collections.productReviews
-    .find({
-      productId,
-    })
-    .toArray();
-
-  res.status(200).send(
-    Math.round(
-      (reviews.reduce((prevTotal, curr) => {
-        return prevTotal + curr.rating;
-      }, 0) /
-        reviews.length) *
-        2
-    ) / 2
-  );
+  const rating = await getRating(productId);
+  res.status(200).send(rating);
 };
 export default handler;

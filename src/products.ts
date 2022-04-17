@@ -2,8 +2,8 @@ export const productsData = [
   {
     id: "0",
     name: {
-      en: "Multifunctional Screwdriver Pack",
-      es: "Paquete de destornilladores multifuncionales",
+      en: "Multifunctional Screwdriver Pack JM-8183",
+      es: "Paquete de destornilladores multifuncionales JM-8183",
       zh: "多功能螺丝刀套装 JM-8183",
     },
     description: {

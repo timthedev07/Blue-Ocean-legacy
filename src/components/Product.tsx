@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FC } from "react";
 import { chopWordForUI } from "../utils/chopTextForUI";
 import { cloudinaryInstance } from "../cloudinary";
-import { LazyCldImage } from "./LazyCldImage";
+import { LazyImage } from "./LazyImage";
 
 interface ProductProps {
   name: string;
@@ -17,7 +17,7 @@ export const Product: FC<ProductProps> = ({ name, price, id }) => {
   return (
     <Link href={`/products/${id}`} passHref>
       <div className="w-60 border border-neutral-300 border-opacity-10 rounded-md bg-slate-900/30 cursor-pointer transition-all duration-150 hover:bg-slate-800/40 hover:shadow-2xl transform hover:-translate-y-[1.5px]">
-        <LazyCldImage
+        <LazyImage
           src={thumbnailURL}
           className="rounded-t-md"
           whileLoading={{

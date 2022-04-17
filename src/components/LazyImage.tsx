@@ -18,7 +18,7 @@ interface ExtraProps {
   whileLoading?: WhileLoading;
 }
 
-export const LazyCldImage: FC<
+export const LazyImage: FC<
   DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> &
     ExtraProps
 > = ({ alt, src, className, whileLoading, ...props }) => {

@@ -9,7 +9,7 @@ interface LanguageToggleProps {
 export const Locales = ["en-US", "es-ES", "zh-CN"] as const;
 export type LocaleType = typeof Locales[number];
 export const LocaleString: Record<LocaleType, string> = {
-  "en-US": "English(US)",
+  "en-US": "English",
   "es-ES": "Español(ES)",
   "zh-CN": "中文(简体)",
 };

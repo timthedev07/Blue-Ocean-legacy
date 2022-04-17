@@ -13,19 +13,17 @@ module.exports = {
     extend: {
       keyframes: {
         shine: {
-          "10%": {
+          "0%": {
             opacity: "1",
-            top: "-30%",
-            left: "-30%",
-            "transition-property": "left, top, opacity",
-            "transition-duration": "0.7s, 0.7s, 0.15s",
-            "transition-timing-function": "ease",
+            transform: "translateX(0%)",
           },
+          // "50%": {
+          //   opacity: "0.5",
+          //   transform: "translateX(100%)",
+          // },
           "100%": {
             opacity: "0",
-            top: "-30%",
-            left: "-30%",
-            "transition-property": "left, top, opacity",
+            transform: "translateX(80%)",
           },
         },
       },

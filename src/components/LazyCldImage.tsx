@@ -63,9 +63,9 @@ export const LazyCldImage: FC<
           placeholderColor +
           `
           overflow-hidden
+          relative
           after:animate-[shine_1000ms_ease_infinite]
           after:absolute
-          after:top-[-110%]
           after:left-[-210%]
           after:w-[200%]
           after:h-[200%]

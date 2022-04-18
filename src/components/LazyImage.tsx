@@ -16,14 +16,16 @@ interface WhileLoading {
 
 interface ExtraProps {
   whileLoading?: WhileLoading;
+  isZoomable?: boolean;
 }
 
 export const LazyImage: FC<
   DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> &
     ExtraProps
-> = ({ alt, src, className, whileLoading, ...props }) => {
+> = ({ alt, src, className, whileLoading, isZoomable = false, ...props }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isInView, setIsInView] = useState(false);
+  const [zoomInActive, setZoomInActive] = useState(false);
   const root = useRef<HTMLDivElement | null>(null);
   const {
     containerDimensions = "w-full h-60",
@@ -57,6 +59,18 @@ export const LazyImage: FC<
       }
     >
       <div
+        className={`${
+          zoomInActive ? "z-[99999] fixed" : "-z-[1000] hidden"
+        } bg-black bg-opacity-60 w-full h-screen top-0 bottom-0 left-0 right-0 overflow-hidden flex justify-center items-center`}
+        onClick={() => {
+          setZoomInActive(false);
+        }}
+      >
+        <div className="flex justify-center items-start overflow-y-scroll h-[90vh] max-w-[500px] no-scrollbar rounded-xl p-8 bg-sky-300">
+          <img src={src} className="rounded-xl" alt="" />
+        </div>
+      </div>
+      <div
         className={
           "w-full h-full " +
           placeholderStyles +
@@ -80,7 +94,15 @@ export const LazyImage: FC<
       {isInView ? (
         <img
           {...props}
-          className={className}
+          className={`${className} ${
+            isZoomable ? "cursor-pointer" : "cursor-default"
+          }`}
+          onClick={() => {
+            if (!isZoomable) {
+              return;
+            }
+            setZoomInActive(true);
+          }}
           src={src}
           alt={alt}
           onLoad={() => {

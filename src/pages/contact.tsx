@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 import { getSingleTranslation, getTranslation } from "../utils/getTranslation";
 import { enContact, esContact, zhContact } from "../translations/contact";
 import { toast } from "react-hot-toast";
+import { toastConfig } from "../utils/toastConfig";
 
 export interface ContactFormValues {
   name: string;
@@ -51,28 +52,27 @@ const Contact: NextPage = () => {
       });
 
       const status = response.status;
-      toast.success(
-        199 > status && status < 300
-          ? getSingleTranslation(
-              locale,
-              "Thanks for contacting us!",
-              "Gracias por contactarnos.",
-              "感谢您联系我们"
-            )
-          : getSingleTranslation(
-              locale,
-              "Sorry, your request cannot be processed at the moment. Try again later.",
-              "Lo sentimos, su solicitud no puede ser procesada en este momento. Vuelva a intentarlo más tarde.",
-              "非常抱歉，您的信息未能发送成功，请稍后再试。"
-            ),
-        {
-          style: {
-            background: "#0f172a",
-            color: "#fff",
-          },
-          duration: 5000,
-        }
-      );
+      if (199 < status && status < 300) {
+        toast.success(
+          getSingleTranslation(
+            locale,
+            "Thanks for contacting us!",
+            "Gracias por contactarnos.",
+            "感谢您联系我们"
+          ),
+          toastConfig
+        );
+      } else {
+        toast.error(
+          getSingleTranslation(
+            locale,
+            "Sorry, your request cannot be processed at the moment. Try again later.",
+            "Lo sentimos, su solicitud no puede ser procesada en este momento. Vuelva a intentarlo más tarde.",
+            "非常抱歉，您的信息未能发送成功，请稍后再试。"
+          ),
+          toastConfig
+        );
+      }
     },
   });
   const { locale } = useRouter();

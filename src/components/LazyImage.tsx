@@ -59,14 +59,18 @@ export const LazyImage: FC<
       }
     >
       <div
-        className={`${
-          zoomInActive ? "z-[99999] fixed" : "-z-[1000] hidden"
+        className={`fixed ${
+          zoomInActive ? "z-[99999] opacity-100" : "-z-[1000] opacity-0"
         } bg-black bg-opacity-60 w-full h-screen top-0 bottom-0 left-0 right-0 overflow-y-hidden flex justify-center items-center`}
         onClick={() => {
           setZoomInActive(false);
         }}
       >
-        <div className="flex justify-center items-start overflow-y-scroll h-[90vh] w-[90%] md:max-w-[500px] no-scrollbar rounded-xl p-4 scroll-p-4 bg-sky-800">
+        <div
+          className={`flex justify-center items-start overflow-y-scroll h-[90vh] w-[90%] md:max-w-[500px] no-scrollbar rounded-xl p-4 scroll-p-4 bg-sky-800 bg-opacity-80 transition-transform duration-300 transform ${
+            zoomInActive ? "translate-y-0" : "translate-y-[100%]"
+          }`}
+        >
           <img src={src} className="rounded-xl" alt="" />
         </div>
       </div>

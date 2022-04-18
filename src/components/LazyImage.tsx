@@ -66,7 +66,7 @@ export const LazyImage: FC<
           setZoomInActive(false);
         }}
       >
-        <div className="flex justify-center items-start overflow-y-scroll h-[90vh] max-w-[500px] no-scrollbar rounded-xl p-8 bg-sky-800">
+        <div className="flex justify-center items-start overflow-y-scroll h-[90vh] w-[90%] md:max-w-[500px] no-scrollbar rounded-xl p-4 bg-sky-800">
           <img src={src} className="rounded-xl" alt="" />
         </div>
       </div>

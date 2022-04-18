@@ -22,6 +22,7 @@ export const LazyImage: FC<
   className = "",
   isZoomable = false,
   placeholderStyles = "",
+  onClick,
   containerStyles,
   ...props
 }) => {
@@ -96,7 +97,8 @@ export const LazyImage: FC<
           className={`${className} w-full h-full ${
             isZoomable ? "cursor-pointer" : "cursor-default"
           }`}
-          onClick={() => {
+          onClick={(e) => {
+            if (onClick) onClick(e);
             if (!isZoomable) {
               return;
             }

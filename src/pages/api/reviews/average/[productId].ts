@@ -14,6 +14,8 @@ export const getRating = async (productId: string) => {
     })
     .toArray();
 
+  if (!reviews.length) return 0;
+
   return (
     Math.round(
       (reviews.reduce((prevTotal, curr) => {

@@ -7,13 +7,26 @@ import { RatingDisplay } from "../../components/RatingDisplay";
 import { productsData } from "../../products";
 import { getSingleTranslationObj } from "../../utils/getTranslation";
 import { getRating } from "../api/reviews/average/[productId]";
+import { v2 } from "../../cloudinary";
+import { CloudinaryResource } from "../../types/cloudinaryResource";
 
 interface ProductDetailsProps {
   product: typeof productsData[0];
   rating: number;
+  imagesData: ProductImageData[];
 }
 
-const ProductDetails: NextPage<ProductDetailsProps> = ({ product, rating }) => {
+interface ProductImageData {
+  href: string;
+  height: number;
+  width: number;
+}
+
+const ProductDetails: NextPage<ProductDetailsProps> = ({
+  product,
+  rating,
+  imagesData,
+}) => {
   const { locale } = useRouter();
 
   const spacer = <div className="h-full flex-1 md:flex-grow flex-grow-0"></div>;
@@ -25,7 +38,7 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({ product, rating }) => {
       {spacer}
       <div className=" flex-1 md:flex-grow-[3.5] lg:flex-grow-[2.5] flex justify-center gap-4 items-start border border-white rounded-lg">
         <div className={`flex-1 flex-grow ${test} `}>
-          <LazyImage src="https://assets.vercel.com/image/upload/f_auto,c_limit,q_auto,w_96/front/home/new/leo.png" />
+          <LazyImage src="" />
         </div>
         <div
           className={`flex flex-col flex-1 flex-grow justify-start items-start p-6 gap-5 ${test}`}
@@ -71,12 +84,31 @@ export const getStaticProps: GetStaticProps<ProductDetailsProps> = async ({
     };
   }
 
+  // get product rating with our api
   const rating = await getRating(product.id);
+
+  // get product images with cloudinary
+  const cloudinaryApiResponse = await v2.search
+    .expression(
+      `products/${product.id}/*` // add your folder
+    )
+    .sort_by("public_id", "desc")
+    .max_results(30)
+    .execute();
+  const resources = cloudinaryApiResponse.resources as CloudinaryResource[];
+  const imagesData = resources.map((each) => {
+    return {
+      height: each.height,
+      width: each.width,
+      href: each.url,
+    };
+  }) as ProductImageData[];
 
   return {
     props: {
       product,
       rating,
+      imagesData,
     },
   };
 };

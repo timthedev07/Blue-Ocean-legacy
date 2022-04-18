@@ -47,8 +47,6 @@ export const LazyImage: FC<
     observer.observe(root.current);
   }, []);
 
-  console.log(isLoading);
-
   return (
     <div ref={root} className={`relative ${loadingDimensions}`}>
       {isZoomable ? (

@@ -12,7 +12,7 @@ import {
 import { motion } from "framer-motion";
 import { getStaggerVariants, listItemVariants } from "../utils/variants";
 import { useRouter } from "next/router";
-import { getTranslation } from "../utils/getTranslation";
+import { getSingleTranslation, getTranslation } from "../utils/getTranslation";
 import { enContact, esContact, zhContact } from "../translations/contact";
 import { toast } from "react-hot-toast";
 
@@ -50,14 +50,29 @@ const Contact: NextPage = () => {
         method: "POST",
       });
 
-      const responseText = (await response.json()).message;
-      toast.success(responseText, {
-        style: {
-          background: "#0f172a",
-          color: "#fff",
-        },
-        duration: 5000,
-      });
+      const status = response.status;
+      toast.success(
+        199 > status && status < 300
+          ? getSingleTranslation(
+              locale,
+              "Thanks for contacting us!",
+              "Gracias por contactarnos.",
+              "感谢您联系我们"
+            )
+          : getSingleTranslation(
+              locale,
+              "Sorry, your request cannot be processed at the moment. Try again later.",
+              "Lo sentimos, su solicitud no puede ser procesada en este momento. Vuelva a intentarlo más tarde.",
+              "非常抱歉，您的信息未能发送成功，请稍后再试。"
+            ),
+        {
+          style: {
+            background: "#0f172a",
+            color: "#fff",
+          },
+          duration: 5000,
+        }
+      );
     },
   });
   const { locale } = useRouter();

@@ -1,6 +1,7 @@
 import cache from "memory-cache";
-import { v2 } from "../cloudinary";
+import { v2 } from "cloudinary";
 import { CloudinaryResource } from "../types/cloudinaryResource";
+import { cloudinaryV2Config } from "../cloudinary";
 
 export interface ProductImageData {
   href: string;
@@ -17,6 +18,7 @@ export const getCachedProductImages = async (productId: string) => {
     const hours = 24;
     const hour = 1000 * 60 * 60;
 
+    v2.config(cloudinaryV2Config);
     const cloudinaryApiResponse = await v2.search
       .expression(`products/${productId}/*`)
       .sort_by("public_id", "desc")

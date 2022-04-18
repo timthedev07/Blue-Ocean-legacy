@@ -20,13 +20,18 @@ import {
   zhWriteReview,
 } from "../translations/write-review";
 import { getSingleTranslation, getTranslation } from "../utils/getTranslation";
+import { toastConfig } from "../utils/toastConfig";
 import { newReviewSchema } from "../utils/yupSchemas";
 
 interface ReviewFormProps {
   productId: string;
+  className?: string;
 }
 
-export const ReviewForm: FC<ReviewFormProps> = ({ productId }) => {
+export const ReviewForm: FC<ReviewFormProps> = ({
+  productId,
+  className = "",
+}) => {
   const { locale } = useRouter();
 
   const formik = useFormik({
@@ -44,36 +49,39 @@ export const ReviewForm: FC<ReviewFormProps> = ({ productId }) => {
       });
 
       const status = response.status;
-      toast.success(
-        199 > status && status < 300
-          ? getSingleTranslation(
-              locale,
-              "Review submitted!",
-              "La crítica ya está subido!",
-              "评价已提交！"
-            )
-          : getSingleTranslation(
-              locale,
-              "Sorry, your request cannot be processed at the moment. Try again later.",
-              "Lo sentimos, su crítica no puede ser procesada en este momento. Vuelva a intentarlo más tarde.",
-              "非常抱歉，您的评论未能被收录，请稍后再试。"
-            ),
-        {
-          style: {
-            background: "#0f172a",
-            color: "#fff",
-          },
-          duration: 5000,
-        }
-      );
+      console.log(status);
+
+      if (199 < status && status < 300) {
+        toast.success(
+          getSingleTranslation(
+            locale,
+            "Review submitted!",
+            "La crítica ya está subido!",
+            "评价已提交！"
+          ),
+          toastConfig
+        );
+      } else {
+        toast.error(
+          getSingleTranslation(
+            locale,
+            "Sorry, your request cannot be processed at the moment. Try again later.",
+            "Lo sentimos, su crítica no puede ser procesada en este momento. Vuelva a intentarlo más tarde.",
+            "非常抱歉，您的评论未能被收录，请稍后再试。"
+          ),
+          toastConfig
+        );
+      }
     },
   });
+
   const t = getTranslation(locale, enWriteReview, esWriteReview, zhWriteReview);
+
   return (
     <>
       <form
         onSubmit={formik.handleSubmit}
-        className="flex flex-col gap-3 w-[95%] max-w-3xl border rounded-lg p-6"
+        className={`flex flex-col gap-3 w-[95%] max-w-3xl border rounded-lg p-6 ${className}`}
       >
         <FormControl isRequired>
           <FormLabel as="legend" htmlFor="authorName">

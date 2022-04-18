@@ -61,12 +61,12 @@ export const LazyImage: FC<
       <div
         className={`${
           zoomInActive ? "z-[99999] fixed" : "-z-[1000] hidden"
-        } bg-black bg-opacity-60 w-full h-screen top-0 bottom-0 left-0 right-0 overflow-hidden flex justify-center items-center`}
+        } bg-black bg-opacity-60 w-full h-screen top-0 bottom-0 left-0 right-0 overflow-y-hidden flex justify-center items-center`}
         onClick={() => {
           setZoomInActive(false);
         }}
       >
-        <div className="flex justify-center items-start overflow-y-scroll h-[90vh] w-[90%] md:max-w-[500px] no-scrollbar rounded-xl p-4 bg-sky-800">
+        <div className="flex justify-center items-start overflow-y-scroll h-[90vh] w-[90%] md:max-w-[500px] no-scrollbar rounded-xl p-4 scroll-p-4 bg-sky-800">
           <img src={src} className="rounded-xl" alt="" />
         </div>
       </div>
@@ -77,6 +77,7 @@ export const LazyImage: FC<
           " " +
           placeholderColor +
           `
+          ${isLoading ? "block" : "hidden"}
           overflow-hidden
           relative
           after:animate-[shine_1000ms_ease_infinite]
@@ -106,7 +107,7 @@ export const LazyImage: FC<
           src={src}
           alt={alt}
           onLoad={() => {
-            setIsLoading((prev) => !prev);
+            setIsLoading(false);
           }}
         />
       ) : (

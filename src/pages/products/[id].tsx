@@ -32,9 +32,16 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
   return (
     <div className="flex justify-center items-start p-3 gap-3">
       {spacer}
-      <div className=" flex-1 md:flex-grow-[3.5] lg:flex-grow-[2.5] flex justify-center gap-4 items-start border-0 border-white rounded-lg">
-        <div className={`flex-1 flex-grow ${test} w-full h-auto`}>
-          <LazyImage src={imagesData[0].href} className="rounded-md" />
+      <div className=" flex-1 md:flex-grow-[3.5] lg:flex-grow-[2.5] flex md:flex-row flex-col justify-center gap-4 items-start border-0 border-white rounded-lg">
+        <div className={`flex-1 flex-grow ${test} w-full h-auto rounded-md`}>
+          <LazyImage
+            src={imagesData[4].href}
+            className="rounded-md object-cover max-h-96 w-full object-top"
+            whileLoading={{
+              placeholderStyles: "rounded-md",
+            }}
+            isZoomable
+          />
         </div>
         <div
           className={`flex flex-col flex-1 flex-grow justify-start items-start p-6 gap-5 ${test}`}

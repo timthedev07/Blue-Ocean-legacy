@@ -41,20 +41,18 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
             loadingDimensions="w-full h-auto"
             isZoomable
           />
-          <ul className="flex gap-1 overflow-x-scroll whitespace-nowrap flex-row">
+          <div className="gap-1 overflow-x-scroll whitespace-nowrap no-scrollbar my-3">
             {imagesData.map((each) => (
-              <img
+              <LazyImage
                 src={each.href}
                 key={each.href}
                 alt=""
-                // whileLoading={{
-                //   containerDimensions: "w-auto h-full",
-                // }}
-                // containerStyles="flex-grow basis-0"
-                className="h-24 w-auto"
+                className="rounded-md object-cover h-24 object-top"
+                placeholderStyles="rounded-xs"
+                loadingDimensions="w-auto h-auto inline-block mx-4"
               />
             ))}
-          </ul>
+          </div>
         </div>
         <div
           className={`flex flex-col flex-1 flex-grow justify-start items-start p-6 gap-5 ${test}`}

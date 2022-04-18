@@ -5,11 +5,11 @@ import {
   enFooter,
   esFooter,
   zhFooter,
-} from "../translations/components/footer";
-import { getTranslation } from "../utils/getTranslation";
+} from "../../translations/components/footer";
+import { getTranslation } from "../../utils/getTranslation";
 import { FooterLogo } from "./FooterLogo";
-import { Fb } from "./icons/social/Fb";
-import { Twitter } from "./icons/social/Twitter";
+import { Fb } from "../icons/social/Fb";
+import { Twitter } from "../icons/social/Twitter";
 
 interface FooterLinkProps {
   href: string;

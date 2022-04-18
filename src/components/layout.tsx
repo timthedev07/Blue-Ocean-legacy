@@ -1,9 +1,10 @@
 import { FC, useEffect, useState } from "react";
 import Head from "next/head";
 import { Nav } from "./navigation/Nav";
-import { Footer } from "./Footer";
+import { Footer } from "./footers/Footer";
 import { MobileNav } from "./navigation/mobile";
 import { Toaster } from "react-hot-toast";
+import { MobileFooter } from "./footers/MobileFooter";
 
 export const metadata = {
   title: "Blue Ocean",
@@ -65,7 +66,7 @@ export const Layout: FC = ({ children }) => {
         {!isMobile ? <Nav /> : <MobileNav isSmallMobile={isSmallMobile} />}
         <div className="min-h-screen">{children}</div>
       </div>
-      <Footer />
+      {!isMobile ? <Footer /> : <MobileFooter />}
     </>
   );
 };

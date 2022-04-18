@@ -7,32 +7,28 @@ import {
   useEffect,
 } from "react";
 
-interface WhileLoading {
-  containerDimensions?: string;
-  containerStyles?: string;
-  placeholderStyles?: string;
-  placeholderColor?: string;
-}
-
 interface ExtraProps {
-  whileLoading?: WhileLoading;
   isZoomable?: boolean;
+  placeholderStyles?: string;
+  loadingDimensions: string;
 }
 
 export const LazyImage: FC<
   DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> &
     ExtraProps
-> = ({ alt, src, className, whileLoading, isZoomable = false, ...props }) => {
+> = ({
+  alt,
+  src,
+  className = "",
+  isZoomable = false,
+  placeholderStyles = "",
+  loadingDimensions,
+  ...props
+}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isInView, setIsInView] = useState(false);
   const [zoomInActive, setZoomInActive] = useState(false);
   const root = useRef<HTMLDivElement | null>(null);
-  const {
-    containerDimensions = "w-full h-60",
-    containerStyles,
-    placeholderStyles,
-    placeholderColor = "bg-zinc-600",
-  } = whileLoading || {};
 
   useEffect(() => {
     if (!root.current) return;
@@ -51,36 +47,36 @@ export const LazyImage: FC<
     observer.observe(root.current);
   }, []);
 
+  console.log(isLoading);
+
   return (
-    <div
-      ref={root}
-      className={
-        isLoading ? containerDimensions + " " + containerStyles : className
-      }
-    >
-      <div
-        className={`fixed ${
-          zoomInActive ? "z-[99999] opacity-100" : "-z-[1000] opacity-0"
-        } bg-black bg-opacity-60 w-full h-screen top-0 bottom-0 left-0 right-0 overflow-y-hidden flex justify-center items-center`}
-        onClick={() => {
-          setZoomInActive(false);
-        }}
-      >
+    <div ref={root} className={`relative ${loadingDimensions}`}>
+      {isZoomable ? (
         <div
-          className={`flex justify-center items-start overflow-y-scroll h-[90vh] w-[90%] md:max-w-[500px] no-scrollbar rounded-xl p-4 scroll-p-4 bg-sky-800 bg-opacity-80 transition-transform duration-300 transform ${
-            zoomInActive ? "translate-y-0" : "translate-y-[100%]"
-          }`}
+          className={`fixed ${
+            zoomInActive ? "z-[99999] opacity-100" : "-z-[1000] opacity-0"
+          } bg-black bg-opacity-60 w-full h-screen top-0 bottom-0 left-0 right-0 overflow-y-hidden flex justify-center items-center`}
+          onClick={() => {
+            setZoomInActive(false);
+          }}
         >
-          <img src={src} className="rounded-xl" alt="" />
+          <div
+            className={`flex justify-center items-start overflow-y-scroll h-[90vh] w-[90%] md:max-w-[500px] no-scrollbar rounded-xl p-4 scroll-p-4 bg-sky-800 bg-opacity-80 transition-transform duration-300 transform ${
+              zoomInActive ? "translate-y-0" : "translate-y-[100%]"
+            }`}
+          >
+            <img src={src} className="rounded-xl" alt="" />
+          </div>
         </div>
-      </div>
+      ) : (
+        ""
+      )}
       <div
         className={
           "w-full h-full " +
           placeholderStyles +
-          " " +
-          placeholderColor +
           `
+          bg-zinc-700
           ${isLoading ? "block" : "hidden"}
           overflow-hidden
           relative
@@ -99,7 +95,7 @@ export const LazyImage: FC<
       {isInView ? (
         <img
           {...props}
-          className={`${className} ${
+          className={`${className} w-full h-full ${
             isZoomable ? "cursor-pointer" : "cursor-default"
           }`}
           onClick={() => {

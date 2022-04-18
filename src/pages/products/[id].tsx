@@ -37,11 +37,24 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
           <LazyImage
             src={imagesData[4].href}
             className="rounded-md object-cover max-h-96 w-full object-top"
-            whileLoading={{
-              placeholderStyles: "rounded-md",
-            }}
+            placeholderStyles="rounded-md"
+            loadingDimensions="w-full h-auto"
             isZoomable
           />
+          <ul className="flex gap-1 overflow-x-scroll whitespace-nowrap flex-row">
+            {imagesData.map((each) => (
+              <img
+                src={each.href}
+                key={each.href}
+                alt=""
+                // whileLoading={{
+                //   containerDimensions: "w-auto h-full",
+                // }}
+                // containerStyles="flex-grow basis-0"
+                className="h-24 w-auto"
+              />
+            ))}
+          </ul>
         </div>
         <div
           className={`flex flex-col flex-1 flex-grow justify-start items-start p-6 gap-5 ${test}`}

@@ -36,13 +36,15 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
       {spacer}
       <div className=" flex-1 md:flex-grow-[3.5] lg:flex-grow-[2.5] flex md:flex-row flex-col justify-center gap-4 items-start border-0 border-white rounded-lg">
         <div className={`flex-1 flex-grow ${test} w-full h-auto rounded-md`}>
-          <LazyImage
-            src={imagesData[selectedImgInd].href}
-            className="rounded-md object-cover max-h-96 object-top"
-            placeholderStyles="rounded-md"
-            containerStyles="w-full h-auto"
-            isZoomable
-          />
+          <div className="h-96">
+            <LazyImage
+              src={imagesData[selectedImgInd].href}
+              className="rounded-md object-cover max-h-96 object-top"
+              placeholderStyles="rounded-md"
+              containerStyles="w-full h-auto"
+              isZoomable
+            />
+          </div>
           <div className="gap-1 overflow-x-scroll whitespace-nowrap no-scrollbar my-3">
             {imagesData.map((each, ind) => (
               <LazyImage
@@ -50,9 +52,11 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
                 key={each.href}
                 alt=""
                 className="rounded-md object-cover h-24 object-top"
-                placeholderStyles="rounded-xs"
-                containerStyles="w-auto h-auto inline-block mx-4"
+                containerStyles={`w-auto h-auto inline-block mx-4 ${
+                  selectedImgInd === ind ? "border-[3px] border-cyan-700" : ""
+                }`}
                 onClick={() => {
+                  console.log(`clicked ${ind}`);
                   setSelectedImgInd(ind);
                 }}
               />

@@ -2,35 +2,31 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Slider,
+  SliderMark,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
   Textarea,
   Button,
-  Slider,
-  SliderFilledTrack,
-  SliderMark,
-  SliderThumb,
-  SliderTrack,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import { GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
+import { FC } from "react";
 import toast from "react-hot-toast";
-import { productsData } from "../../../products";
 import {
   enWriteReview,
   esWriteReview,
   zhWriteReview,
-} from "../../../translations/write-review";
-import {
-  getSingleTranslation,
-  getTranslation,
-} from "../../../utils/getTranslation";
-import { newReviewSchema } from "../../../utils/yupSchemas";
+} from "../translations/write-review";
+import { getSingleTranslation, getTranslation } from "../utils/getTranslation";
+import { newReviewSchema } from "../utils/yupSchemas";
 
-interface Props {
+interface ReviewFormProps {
   productId: string;
 }
 
-const WriteReview: NextPage<Props> = ({ productId }) => {
+export const ReviewForm: FC<ReviewFormProps> = ({ productId }) => {
   const { locale } = useRouter();
 
   const formik = useFormik({
@@ -73,9 +69,8 @@ const WriteReview: NextPage<Props> = ({ productId }) => {
     },
   });
   const t = getTranslation(locale, enWriteReview, esWriteReview, zhWriteReview);
-
   return (
-    <div className="flex justify-center items-center min-h-[500px]">
+    <>
       <form
         onSubmit={formik.handleSubmit}
         className="flex flex-col gap-3 w-[95%] max-w-3xl border rounded-lg p-6"
@@ -146,38 +141,6 @@ const WriteReview: NextPage<Props> = ({ productId }) => {
         />
         <Button type="submit">{t.submit}</Button>
       </form>
-    </div>
+    </>
   );
 };
-
-export const getStaticPaths = async () => {
-  return {
-    paths: productsData.map((each) => ({
-      params: {
-        id: each.id,
-      },
-    })),
-    fallback: "blocking",
-  };
-};
-
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const { id } = params!;
-  const product = productsData.find((v) => {
-    return v.id == id;
-  });
-
-  if (!product) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      productId: product.id,
-    },
-  };
-};
-
-export default WriteReview;

@@ -32,7 +32,7 @@ export const Footer: FC = ({}) => {
 
   return (
     <div className="sticky w-full h-80 bg-slate-900 p-6">
-      <div className="flex justify-start gap-16">
+      <div className="flex justify-start gap-16 min-h-[200px]">
         <FooterLogo className="w-72" />
         <article className="flex flex-col">
           <h5 className="uppercase font-bold text-lg">{t.subheading0}</h5>
@@ -53,7 +53,7 @@ export const Footer: FC = ({}) => {
             />
           </ul>
         </article>
-        <article className="flex-1 flex justify-center items-center gap-8">
+        <article className="flex-1 flex flex-col md:flex-row justify-center items-center gap-8">
           <Twitter className="w-10" />
           <Fb className="w-10" />
         </article>

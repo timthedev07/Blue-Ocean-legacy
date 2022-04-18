@@ -115,6 +115,9 @@ export const ReviewForm: FC<ReviewFormProps> = ({
             isDisabled={formDisabled}
             max={5}
             defaultValue={1}
+            onChange={(val) => {
+              formik.setFieldValue("rating", val, true);
+            }}
           >
             {[1, 2, 3, 4, 5].map((each) => (
               <SliderMark

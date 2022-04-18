@@ -98,6 +98,7 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
           productId={product.id}
           className={showReviewForm ? "block" : "hidden"}
           onSubmissionSuccess={() => {
+            setShowReviewForm(false);
             reload();
           }}
         />

@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { FC } from "react";
+import { FC, useState } from "react";
 import toast from "react-hot-toast";
 import {
   enWriteReview,
@@ -35,6 +35,7 @@ export const ReviewForm: FC<ReviewFormProps> = ({
   onSubmissionSuccess,
 }) => {
   const { locale } = useRouter();
+  const [formDisabled, setFormDisabled] = useState<boolean>(false);
 
   const formik = useFormik({
     initialValues: {
@@ -45,6 +46,8 @@ export const ReviewForm: FC<ReviewFormProps> = ({
     },
     validationSchema: newReviewSchema,
     onSubmit: async (formData) => {
+      setFormDisabled(true);
+
       const response = await fetch("/api/reviews/newReview", {
         body: JSON.stringify({ ...formData }),
         method: "POST",
@@ -92,6 +95,7 @@ export const ReviewForm: FC<ReviewFormProps> = ({
           </FormLabel>
           <Input
             id="authorName"
+            isDisabled={formDisabled}
             className="border-black"
             required
             value={formik.values.authorName}
@@ -108,6 +112,7 @@ export const ReviewForm: FC<ReviewFormProps> = ({
             aria-label="slider-ex-6"
             name="rating"
             min={1}
+            isDisabled={formDisabled}
             max={5}
             defaultValue={1}
           >
@@ -140,6 +145,7 @@ export const ReviewForm: FC<ReviewFormProps> = ({
             name="review"
             onChange={formik.handleChange}
             variant="flushed"
+            isDisabled={formDisabled}
             resize={"none"}
             value={formik.values.review}
           />
@@ -150,7 +156,9 @@ export const ReviewForm: FC<ReviewFormProps> = ({
           name="productId"
           onChange={formik.handleChange}
         />
-        <Button type="submit">{t.submit}</Button>
+        <Button isDisabled={formDisabled} type="submit">
+          {t.submit}
+        </Button>
       </form>
     </>
   );

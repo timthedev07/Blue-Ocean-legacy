@@ -10,7 +10,7 @@ import {
 interface ExtraProps {
   isZoomable?: boolean;
   placeholderStyles?: string;
-  loadingDimensions: string;
+  containerStyles: string;
 }
 
 export const LazyImage: FC<
@@ -22,7 +22,7 @@ export const LazyImage: FC<
   className = "",
   isZoomable = false,
   placeholderStyles = "",
-  loadingDimensions,
+  containerStyles: loadingDimensions,
   ...props
 }) => {
   const [isLoading, setIsLoading] = useState(true);

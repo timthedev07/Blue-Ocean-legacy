@@ -21,7 +21,7 @@ export const Product: FC<ProductProps> = ({ name, price, id }) => {
           src={thumbnailURL}
           className="rounded-t-md"
           placeholderStyles="rounded-t-md"
-          loadingDimensions="w-full h-auto"
+          containerStyles="w-full h-auto"
           alt={name}
         />
         <div className="px-4 py-2 pt-3">

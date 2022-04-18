@@ -11,6 +11,7 @@ import {
   getCachedProductImages,
   ProductImageData,
 } from "../../utils/getCachedProductImages";
+import { useState } from "react";
 
 interface ProductDetailsProps {
   product: typeof productsData[0];
@@ -24,6 +25,7 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
   imagesData,
 }) => {
   const { locale } = useRouter();
+  const [selectedImgInd, setSelectedImgInd] = useState<number>(0);
 
   const spacer = <div className="h-full flex-1 md:flex-grow flex-grow-0" />;
 
@@ -35,21 +37,24 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
       <div className=" flex-1 md:flex-grow-[3.5] lg:flex-grow-[2.5] flex md:flex-row flex-col justify-center gap-4 items-start border-0 border-white rounded-lg">
         <div className={`flex-1 flex-grow ${test} w-full h-auto rounded-md`}>
           <LazyImage
-            src={imagesData[4].href}
-            className="rounded-md object-cover max-h-96 w-full object-top"
+            src={imagesData[selectedImgInd].href}
+            className="rounded-md object-cover max-h-96 object-top"
             placeholderStyles="rounded-md"
-            loadingDimensions="w-full h-auto"
+            containerStyles="w-full h-auto"
             isZoomable
           />
           <div className="gap-1 overflow-x-scroll whitespace-nowrap no-scrollbar my-3">
-            {imagesData.map((each) => (
+            {imagesData.map((each, ind) => (
               <LazyImage
                 src={each.href}
                 key={each.href}
                 alt=""
                 className="rounded-md object-cover h-24 object-top"
                 placeholderStyles="rounded-xs"
-                loadingDimensions="w-auto h-auto inline-block mx-4"
+                containerStyles="w-auto h-auto inline-block mx-4"
+                onClick={() => {
+                  setSelectedImgInd(ind);
+                }}
               />
             ))}
           </div>

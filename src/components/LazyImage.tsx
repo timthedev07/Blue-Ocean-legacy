@@ -47,9 +47,10 @@ export const LazyImage: FC<
     observer.observe(root.current);
   }, []);
 
+  console.log(isLoading);
+
   return (
-    <div ref={root} className={`relative ${loadingDimensions} `}>
-      {/* Zoom in component */}
+    <div ref={root} className={`relative ${loadingDimensions}`}>
       {isZoomable ? (
         <div
           className={`fixed ${
@@ -70,11 +71,9 @@ export const LazyImage: FC<
       ) : (
         ""
       )}
-
-      {/* Placeholder component */}
       <div
         className={
-          "w-full h-full " +
+          "w-full h-56 " +
           placeholderStyles +
           `
           bg-zinc-700
@@ -93,12 +92,10 @@ export const LazyImage: FC<
           `
         }
       />
-
-      {/* Actual */}
       {isInView ? (
         <img
           {...props}
-          className={`${className} ${
+          className={`${className} w-full h-full ${
             isZoomable ? "cursor-pointer" : "cursor-default"
           }`}
           onClick={() => {

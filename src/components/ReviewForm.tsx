@@ -26,11 +26,13 @@ import { newReviewSchema } from "../utils/yupSchemas";
 interface ReviewFormProps {
   productId: string;
   className?: string;
+  onSubmissionSuccess?: Function;
 }
 
 export const ReviewForm: FC<ReviewFormProps> = ({
   productId,
   className = "",
+  onSubmissionSuccess,
 }) => {
   const { locale } = useRouter();
 
@@ -61,6 +63,7 @@ export const ReviewForm: FC<ReviewFormProps> = ({
           ),
           toastConfig
         );
+        if (onSubmissionSuccess) onSubmissionSuccess();
       } else {
         toast.error(
           getSingleTranslation(

@@ -52,7 +52,7 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
                 key={each.href}
                 alt=""
                 className="rounded-md object-cover h-24 object-top"
-                containerStyles={`w-auto h-auto inline-block mx-4 ${
+                containerStyles={`w-auto max-w-[120px] h-auto inline-block mx-4 ${
                   selectedImgInd === ind ? "border-[3px] border-cyan-700" : ""
                 }`}
                 onClick={() => {

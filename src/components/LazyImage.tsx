@@ -22,7 +22,7 @@ export const LazyImage: FC<
   className = "",
   isZoomable = false,
   placeholderStyles = "",
-  containerStyles: loadingDimensions,
+  containerStyles,
   ...props
 }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -48,7 +48,7 @@ export const LazyImage: FC<
   }, []);
 
   return (
-    <div ref={root} className={`relative ${loadingDimensions}`}>
+    <div ref={root} className={`relative ${containerStyles}`}>
       {isZoomable ? (
         <div
           className={`fixed ${

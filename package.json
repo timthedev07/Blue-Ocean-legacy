@@ -13,6 +13,7 @@
     "@cloudinary/url-gen": "^1.7.0",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "cloudinary": "^1.29.1",
     "formik": "^2.2.9",
     "framer-motion": "^4",
     "mongodb": "^4.5.0",

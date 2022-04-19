@@ -37,19 +37,19 @@ export const Footer: FC = ({}) => {
         <article className="flex flex-col">
           <h5 className="uppercase font-bold text-lg">{t.subheading0}</h5>
           <ul className="text-sm">
-            <FooterLink href="/" name="Home" />
-            <FooterLink href="/about" name="About Us" />
-            <FooterLink href="/products" name="Products" />
+            <FooterLink href="/" name={t.links.home} />
+            <FooterLink href="/about" name={t.links.about} />
+            <FooterLink href="/products" name={t.links.products} />
           </ul>
         </article>
         <article className="flex flex-col">
           <h5 className="uppercase font-bold text-lg">{t.subheading1}</h5>
           <ul className="text-sm">
-            <FooterLink href="/contact" name="Contact Us" />
-            <FooterLink href="/privacy-policy" name="Privacy Policy" />
+            <FooterLink href="/contact" name={t.links.contact} />
+            <FooterLink href="/privacy-policy" name={t.links.privacyPolicy} />
             <FooterLink
               href="/terms-and-conditions"
-              name="Terms and Conditions"
+              name={t.links.termsAndConditions}
             />
           </ul>
         </article>
@@ -61,8 +61,8 @@ export const Footer: FC = ({}) => {
       <hr className="w-[90%] m-auto bg-slate-500" />
       <div className="w-[90%] h-8 m-auto">
         <span className="text-xs float-right my-5">
-          {new Date(Date.now()).getFullYear()} © Tim &nbsp;&nbsp;&nbsp; All
-          Rights Reserved
+          {new Date(Date.now()).getFullYear()} © Tim &nbsp;&nbsp;&nbsp;{" "}
+          {t.copyright}
         </span>
       </div>
     </div>

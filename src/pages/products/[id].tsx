@@ -108,17 +108,6 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
   );
 };
 
-export async function getStaticPaths() {
-  return {
-    paths: productsData.map((each) => ({
-      params: {
-        id: each.id,
-      },
-    })),
-    fallback: "blocking",
-  };
-}
-
 export const getServerSideProps: GetServerSideProps<
   ProductDetailsProps
 > = async ({ params }) => {

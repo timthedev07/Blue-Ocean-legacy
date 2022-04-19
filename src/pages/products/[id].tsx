@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/react";
-import { NextPage, GetStaticProps } from "next";
+import { NextPage, GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { LazyImage } from "../../components/LazyImage";
 import { RatingDisplay } from "../../components/RatingDisplay";
@@ -38,8 +38,6 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
 
   const spacer = <div className="h-full flex-1 md:flex-grow flex-grow-0" />;
 
-  const test = "";
-
   const t = getTranslation(locale, enWriteReview, esWriteReview, zhWriteReview);
 
   return (
@@ -47,7 +45,7 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
       {spacer}
       <div className="flex-1 md:flex-grow-[3.5] lg:flex-grow-[2.5] flex flex-col">
         <div className=" flex md:flex-row flex-col justify-center gap-4 items-start">
-          <div className={`flex-1 flex-grow ${test} w-full h-auto rounded-md`}>
+          <div className={`flex-1 flex-grow w-full h-auto rounded-md`}>
             <div className="h-96">
               <LazyImage
                 src={imagesData[selectedImgInd].href}
@@ -77,7 +75,7 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
             </div>
           </div>
           <div
-            className={`flex flex-col flex-1 flex-grow justify-start items-start p-6 gap-5 ${test}`}
+            className={`flex flex-col flex-1 flex-grow justify-start items-start p-6 gap-5`}
           >
             <h4 className="font-bold">
               {getSingleTranslationObj(locale, product.name)}
@@ -121,9 +119,9 @@ export async function getStaticPaths() {
   };
 }
 
-export const getStaticProps: GetStaticProps<ProductDetailsProps> = async ({
-  params,
-}) => {
+export const getServerSideProps: GetServerSideProps<
+  ProductDetailsProps
+> = async ({ params }) => {
   const { id } = params!;
   const product = productsData.find((v) => {
     return v.id == id;
@@ -140,6 +138,7 @@ export const getStaticProps: GetStaticProps<ProductDetailsProps> = async ({
 
   // get product images with cloudinary
   const imagesData = await getCachedProductImages(product.id);
+
   return {
     props: {
       product,

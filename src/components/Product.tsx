@@ -20,7 +20,7 @@ export const Product: FC<ProductProps> = ({ name, price, id }) => {
         <LazyImage
           src={thumbnailURL}
           className="rounded-t-md"
-          placeholderStyles="rounded-t-md"
+          placeholderHeight="rounded-t-md"
           containerStyles="w-full h-auto"
           alt={name}
         />

@@ -52,7 +52,7 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
               <LazyImage
                 src={imagesData[selectedImgInd].href}
                 className="rounded-md object-cover max-h-96 object-top"
-                placeholderStyles="rounded-md"
+                placeholderHeight="rounded-md"
                 containerStyles="w-full h-auto"
                 isZoomable
               />
@@ -67,6 +67,7 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
                   containerStyles={`w-auto max-w-[120px] h-auto inline-block mx-4 ${
                     selectedImgInd === ind ? "border-[3px] border-cyan-700" : ""
                   }`}
+                  placeholderHeight="h-24"
                   onClick={() => {
                     console.log(`clicked ${ind}`);
                     setSelectedImgInd(ind);

@@ -9,7 +9,7 @@ import {
 
 interface ExtraProps {
   isZoomable?: boolean;
-  placeholderStyles?: string;
+  placeholderHeight?: string;
   containerStyles: string;
 }
 
@@ -21,7 +21,7 @@ export const LazyImage: FC<
   src,
   className = "",
   isZoomable = false,
-  placeholderStyles = "",
+  placeholderHeight = "h-56",
   onClick,
   containerStyles,
   ...props
@@ -72,8 +72,8 @@ export const LazyImage: FC<
       )}
       <div
         className={
-          "w-full h-56 " +
-          placeholderStyles +
+          `w-full ${placeholderHeight} ` +
+          placeholderHeight +
           `
           bg-zinc-700
           ${isLoading ? "block" : "hidden"}

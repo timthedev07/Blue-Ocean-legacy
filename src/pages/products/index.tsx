@@ -7,6 +7,7 @@ import {
   esProducts,
   zhProducts,
 } from "../../translations/products";
+import { getHeadForPage } from "../../utils/getHead";
 import {
   getSingleTranslation,
   getTranslation,
@@ -18,6 +19,11 @@ const Products: NextPage = () => {
 
   return (
     <>
+      {getHeadForPage({
+        description: "See our products on this page!",
+        path: `/products`,
+        title: "Products",
+      })}
       <header className="relative flex justify-center items-center">
         <img
           src="/images/k.jpeg"

@@ -10,7 +10,7 @@ export const metadata = {
   title: "Blue Ocean",
   image: "",
   description: "",
-  domain: "https://something.com",
+  domain: "https://boit.es",
 };
 
 const MOBILE_THRESHOLD = 820;

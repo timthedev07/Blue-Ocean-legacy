@@ -3,5 +3,5 @@ export const toastConfig = {
     background: "#0f172a",
     color: "#fff",
   },
-  duration: 5000,
+  duration: 5001,
 };

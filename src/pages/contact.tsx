@@ -82,9 +82,10 @@ const Contact: NextPage = () => {
   return (
     <>
       {getHeadForPage({
-        description: "Contact Service - BOIT",
-        path: "/",
-        title: "Contact Service - BOIT",
+        description:
+          "Contact us right on the site or reach out to us from the following channels",
+        path: "/contact",
+        title: "Contact Service",
       })}
 
       <motion.div

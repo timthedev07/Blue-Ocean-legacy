@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   DetailedHTMLProps,
   FC,
@@ -11,6 +12,7 @@ interface ExtraProps {
   isZoomable?: boolean;
   placeholderHeight?: string;
   containerStyles: string;
+  src: string;
 }
 
 export const LazyImage: FC<
@@ -64,7 +66,7 @@ export const LazyImage: FC<
               zoomInActive ? "translate-y-0" : "translate-y-[100%]"
             }`}
           >
-            <img src={src} className="rounded-xl" alt="" />
+            <Image src={src} className="rounded-xl" alt="" />
           </div>
         </div>
       ) : (

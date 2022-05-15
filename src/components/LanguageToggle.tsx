@@ -17,13 +17,9 @@ export const LocaleString: Record<LocaleType, string> = {
 
 const LocaleImage: FC<{ locale: LocaleType }> = ({ locale }) => {
   return (
-    <Image
-      alt=""
-      width="28px"
-      height="auto"
-      className="mr-2"
-      src={`/images/${locale}.png`}
-    />
+    <div className="h-7 w-7 relative mr-2">
+      <Image alt="" layout="fill" src={`/images/${locale}.png`} />
+    </div>
   );
 };
 

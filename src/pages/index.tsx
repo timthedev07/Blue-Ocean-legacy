@@ -118,9 +118,6 @@ const Home: NextPage = () => {
               setShowCover(false);
             }}
           />
-          {/* <div className="w-full flex justify-end z-[41]">
-          <img src="/light-logo.png" alt="" className="w-60" />
-        </div> */}
           <motion.div
             className="flex flex-col justify-center items-center gap-3 h-min w-[80%] max-w-[1080px] z-10 bg-opacity-70 text-zinc-200 rounded-lg mt-36 lg:mt-48"
             variants={fadeInHero}

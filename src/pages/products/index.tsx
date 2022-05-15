@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { Product } from "../../components/Product";
 import { productsData } from "../../products";
@@ -25,10 +26,12 @@ const Products: NextPage = () => {
         title: "Products",
       })}
       <header className="relative flex justify-center items-center">
-        <img
+        <Image
           src="/images/k.jpeg"
           alt=""
-          className="w-full object-cover h-64 brightness-[0.3]"
+          width={"100vw"}
+          height={"256px"}
+          className="w-full object-cover brightness-[0.3]"
         />
         <h2 className="absolute font-sans font-semibold uppercase">
           {t.header}

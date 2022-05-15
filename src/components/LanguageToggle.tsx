@@ -1,4 +1,5 @@
 import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { FC, useEffect, useState } from "react";
 
@@ -16,7 +17,13 @@ export const LocaleString: Record<LocaleType, string> = {
 
 const LocaleImage: FC<{ locale: LocaleType }> = ({ locale }) => {
   return (
-    <img alt="" className="w-7 h-auto mr-2" src={`/images/${locale}.png`} />
+    <Image
+      alt=""
+      width="28px"
+      height="auto"
+      className="mr-2"
+      src={`/images/${locale}.png`}
+    />
   );
 };
 

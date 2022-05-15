@@ -1,5 +1,5 @@
 {
-  "name": "next-app",
+  "name": "boit-es",
   "private": true,
   "scripts": {
     "dev": "next dev",

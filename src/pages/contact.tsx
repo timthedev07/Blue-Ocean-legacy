@@ -17,6 +17,8 @@ import { enContact, esContact, zhContact } from "../translations/contact";
 import { toast } from "react-hot-toast";
 import { toastConfig } from "../utils/toastConfig";
 import { getHeadForPage } from "../utils/getHead";
+import { EmailContactIcon } from "../components/icons/contact/email";
+import { PhoneContactIcon } from "../components/icons/contact/phone";
 
 export interface ContactFormValues {
   name: string;
@@ -100,11 +102,11 @@ const Contact: NextPage = () => {
             <h3 className="font-semibold">{translation.subheading}</h3>
             <motion.ul className="pl-6" variants={getStaggerVariants(0.2)}>
               <motion.li className="flex gap-3 m-3" variants={listItemVariants}>
-                <img className="w-6" src="/images/email.svg" alt="emailIcon" />
+                <EmailContactIcon className="w-6" />
                 blueocean.co.official@gmail.com
               </motion.li>
               <motion.li className="flex gap-3 m-3" variants={listItemVariants}>
-                <img className="w-6" src="/images/phone.svg" alt="phoneIcon" />
+                <PhoneContactIcon className="w-6" />
                 643611778
               </motion.li>
             </motion.ul>

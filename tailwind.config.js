@@ -1,6 +1,10 @@
 // const colors = require(`tailwindcss/colors`);
 module.exports = {
-  content: ["./src/pages/**/*.{tsx,ts}", "./src/components/**/*.{ts,tsx}"],
+  content: [
+    "./src/pages/**/*.{tsx,ts}",
+    "./src/components/**/*.{ts,tsx}",
+    "node_modules/dragontail-experimental/dist/cjs/index.js",
+  ],
   darkMode: "class",
   mode: "jit",
   variants: {

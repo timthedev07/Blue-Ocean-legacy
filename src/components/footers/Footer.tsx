@@ -31,7 +31,7 @@ export const Footer: FC = ({}) => {
   const t = getTranslation(locale, enFooter, esFooter, zhFooter);
 
   return (
-    <div className="sticky w-full h-80 bg-slate-900 p-6">
+    <div className="sticky w-full h-80 bg-slate-900 p-6 text-neutral-300">
       <div className="flex justify-start gap-16 min-h-[200px]">
         <FooterLogo className="w-72" />
         <article className="flex flex-col">

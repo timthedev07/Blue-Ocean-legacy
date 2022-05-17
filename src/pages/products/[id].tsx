@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button } from "dragontail-experimental";
 import { NextPage, GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { LazyImage } from "../../components/LazyImage";

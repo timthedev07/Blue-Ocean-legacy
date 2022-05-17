@@ -119,18 +119,15 @@ const Contact: NextPage = () => {
           </div>
         </div>
         <div className="w-full h-full flex gap-8 flex-col-reverse md:flex-row">
-          <div className="p-6 min-w-[20rem] w-full border rounded-lg grow shrink basis-0 h-full bg-slate-900">
+          <div className="p-6 min-w-[20rem] w-full border border-neutral-400/60 rounded-lg grow shrink basis-0 h-full bg-slate-900">
             <div className="my-4 text-left">
               <form
                 onSubmit={formik.handleSubmit}
                 className="flex flex-col gap-3"
               >
                 <FormControl label="contact-name" isRequired>
-                  <FormLabel>
-                    {translation.labels.name}
-                  </FormLabel>
+                  <FormLabel>{translation.labels.name}</FormLabel>
                   <Input
-                    className="border-black"
                     placeholder="John Doe"
                     required
                     value={formik.values.name}
@@ -140,11 +137,8 @@ const Contact: NextPage = () => {
                   />
                 </FormControl>
                 <FormControl label="contact-email" isRequired>
-                  <FormLabel>
-                    {translation.labels.email}
-                  </FormLabel>
+                  <FormLabel>{translation.labels.email}</FormLabel>
                   <Input
-                    className="border-black"
                     required
                     placeholder="google@gmail.com"
                     type="email"
@@ -155,11 +149,8 @@ const Contact: NextPage = () => {
                   />
                 </FormControl>
                 <FormControl label="contact-phoneNumber">
-                  <FormLabel>
-                    {translation.labels.phoneNumber}
-                  </FormLabel>
+                  <FormLabel>{translation.labels.phoneNumber}</FormLabel>
                   <Input
-                    className="border-black"
                     name="phoneNumber"
                     variant="underline"
                     onChange={formik.handleChange}
@@ -167,11 +158,8 @@ const Contact: NextPage = () => {
                   />
                 </FormControl>
                 <FormControl label="message" isRequired>
-                  <FormLabel>
-                    {translation.labels.message}
-                  </FormLabel>
+                  <FormLabel>{translation.labels.message}</FormLabel>
                   <Textarea
-                    className="border-black"
                     name="message"
                     onChange={formik.handleChange}
                     variant="underline"

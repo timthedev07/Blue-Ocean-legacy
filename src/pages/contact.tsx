@@ -6,9 +6,7 @@ import {
   Textarea,
   FormLabel,
   FormControl,
-  Box,
-  Heading,
-} from "@chakra-ui/react";
+} from "dragontail-experimental";
 import { motion } from "framer-motion";
 import { getStaggerVariants, listItemVariants } from "../utils/variants";
 import { useRouter } from "next/router";
@@ -96,7 +94,7 @@ const Contact: NextPage = () => {
         initial="initial"
         animate="animate"
       >
-        <Heading>{translation.heading}</Heading>
+        <h3>{translation.heading}</h3>
         <div className="rounded-lg border w-full h-60 p-5 bg-slate-900 flex justify-between">
           <div className="grow shrink basis-1">
             <h3 className="font-semibold">{translation.subheading}</h3>
@@ -122,72 +120,68 @@ const Contact: NextPage = () => {
         </div>
         <div className="w-full h-full flex gap-8 flex-col-reverse md:flex-row">
           <div className="p-6 min-w-[20rem] w-full border rounded-lg grow shrink basis-0 h-full bg-slate-900">
-            <Box className="my-4 text-left">
+            <div className="my-4 text-left">
               <form
                 onSubmit={formik.handleSubmit}
                 className="flex flex-col gap-3"
               >
-                <FormControl isRequired>
-                  <FormLabel as="legend" htmlFor="contact-name">
+                <FormControl label="contact-name" isRequired>
+                  <FormLabel>
                     {translation.labels.name}
                   </FormLabel>
                   <Input
-                    id="contact-name"
                     className="border-black"
                     placeholder="John Doe"
                     required
                     value={formik.values.name}
                     name="name"
-                    variant="flushed"
+                    variant="underline"
                     onChange={formik.handleChange}
                   />
                 </FormControl>
-                <FormControl isRequired>
-                  <FormLabel as="legend" htmlFor="contact-email">
+                <FormControl label="contact-email" isRequired>
+                  <FormLabel>
                     {translation.labels.email}
                   </FormLabel>
                   <Input
-                    id="contact-email"
                     className="border-black"
                     required
                     placeholder="google@gmail.com"
                     type="email"
                     value={formik.values.email}
-                    variant="flushed"
+                    variant="underline"
                     name="email"
                     onChange={formik.handleChange}
                   />
                 </FormControl>
-                <FormControl>
-                  <FormLabel as="legend" htmlFor="contact-phoneNumber">
+                <FormControl label="contact-phoneNumber">
+                  <FormLabel>
                     {translation.labels.phoneNumber}
                   </FormLabel>
                   <Input
                     className="border-black"
-                    id="contact-phoneNumber"
                     name="phoneNumber"
-                    variant="flushed"
+                    variant="underline"
                     onChange={formik.handleChange}
                     value={formik.values.phoneNumber}
                   />
                 </FormControl>
-                <FormControl isRequired>
-                  <FormLabel as="legend" htmlFor="contact-message">
+                <FormControl label="message" isRequired>
+                  <FormLabel>
                     {translation.labels.message}
                   </FormLabel>
                   <Textarea
-                    id="contact-message"
                     className="border-black"
                     name="message"
                     onChange={formik.handleChange}
-                    variant="flushed"
+                    variant="underline"
                     resize={"none"}
                     value={formik.values.message}
                   />
                 </FormControl>
                 <Button type="submit">{translation.submit}</Button>
               </form>
-            </Box>
+            </div>
           </div>
           <div className="grow shrink basis-0">
             <motion.iframe

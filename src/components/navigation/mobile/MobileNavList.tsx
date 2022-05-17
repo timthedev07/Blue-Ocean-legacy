@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 import { enNav, esNav, zhNav } from "../../../translations/components/Nav";
 import { getTranslation } from "../../../utils/getTranslation";
-import { NAV_LINKS } from "../Nav";
+import { NavLink, NAV_LINKS } from "../Nav";
 import { NavLogo } from "../NavLogo";
 import { MobileNavElement } from "./MobileNavElement";
 import { NavDisclosure } from "./MobileNavTrigger";
@@ -43,7 +43,10 @@ export const MobileNavList: FC<MobileNavListProps> = ({
             className="h-14 mx-4 mb-6 w-auto cursor-pointer select-none"
           />
         </Link>
-        {NAV_LINKS.map((each) => (
+        {[{
+          name: "home",
+          href: "/"
+        } as NavLink<'home'>, ...NAV_LINKS].map((each) => (
           <MobileNavElement
             key={each.name}
             name={t[each.name]}

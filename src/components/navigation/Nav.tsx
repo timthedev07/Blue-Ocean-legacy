@@ -10,7 +10,7 @@ interface NavProps {
   className?: string;
 }
 
-interface NavLink<T extends string> {
+export interface NavLink<T extends string> {
   name: T;
   href: string;
 }

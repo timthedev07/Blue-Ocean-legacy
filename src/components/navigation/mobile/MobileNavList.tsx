@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 import { enNav, esNav, zhNav } from "../../../translations/components/Nav";
 import { getTranslation } from "../../../utils/getTranslation";
+import { LanguageToggle } from "../../LanguageToggle";
 import { NavLink, NAV_LINKS } from "../Nav";
 import { NavLogo } from "../NavLogo";
 import { MobileNavElement } from "./MobileNavElement";
@@ -43,10 +44,13 @@ export const MobileNavList: FC<MobileNavListProps> = ({
             className="h-14 mx-4 mb-6 w-auto cursor-pointer select-none"
           />
         </Link>
-        {[{
-          name: "home",
-          href: "/"
-        } as NavLink<'home'>, ...NAV_LINKS].map((each) => (
+        {[
+          {
+            name: "home",
+            href: "/",
+          } as NavLink<"home">,
+          ...NAV_LINKS,
+        ].map((each) => (
           <MobileNavElement
             key={each.name}
             name={t[each.name]}
@@ -57,6 +61,7 @@ export const MobileNavList: FC<MobileNavListProps> = ({
             }}
           />
         ))}
+        <LanguageToggle className="mx-6 mt-6" />
       </div>
 
       {/* overlay */}

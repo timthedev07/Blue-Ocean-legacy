@@ -1,4 +1,4 @@
-import { Menu, MenuButton, MenuList, MenuItem } from "dragontail-experimental";
+import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { FC, useEffect, useState } from "react";
@@ -43,13 +43,13 @@ export const LanguageToggle: FC<LanguageToggleProps> = ({ className = "" }) => {
   return (
     <div className={className + " w-80"}>
       <Menu>
-        <MenuButton className="w-80">
+        <MenuButton as={Button} className="w-80">
           <div className="flex items-center justify-center">
             <LocaleImage locale={selectedLang} />
             {LocaleString[selectedLang]}
           </div>
         </MenuButton>
-        <MenuList className="w-[250px] z-[100000]">
+        <MenuList width="250px" zIndex={1000000}>
           {Locales.filter((each) => each !== selectedLang).map((each) => {
             return (
               <MenuItem

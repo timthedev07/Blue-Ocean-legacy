@@ -38,7 +38,7 @@ const LINKS: MobileFooterLinkProps[] = [
 
 export const MobileFooter: FC = ({}) => {
   return (
-    <div className="sticky min-w-[300px] w-full h-[550px] bg-slate-900 text-neutral-50 flex flex-col items-center">
+    <div className="sticky min-w-[300px] w-full h-[550px] bg-slate-900 flex flex-col items-center">
       <FooterLogo className="w-72" />
       <ul className="w-full">
         {LINKS.map((each) => (

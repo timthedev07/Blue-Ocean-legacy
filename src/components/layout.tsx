@@ -62,7 +62,7 @@ export const Layout: FC = ({ children }) => {
       </Head>
 
       <Toaster />
-      <div id="App" className="bg-slate-800 min-w-[300px] relative text-white">
+      <div id="App" className="bg-slate-800 min-w-[300px] relative">
         {!isMobile ? <Nav /> : <MobileNav isSmallMobile={isSmallMobile} />}
         <div className="min-h-screen">{children}</div>
       </div>

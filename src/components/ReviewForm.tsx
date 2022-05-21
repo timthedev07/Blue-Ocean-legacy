@@ -2,9 +2,14 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Slider,
+  SliderMark,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
   Textarea,
   Button,
-} from "dragontail-experimental";
+} from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { FC, useState } from "react";
@@ -84,35 +89,37 @@ export const ReviewForm: FC<ReviewFormProps> = ({
         onSubmit={formik.handleSubmit}
         className={`flex flex-col gap-3 w-[95%] max-w-3xl border rounded-lg p-6 ${className}`}
       >
-        <FormControl label="authorName" isRequired>
-          <FormLabel>
+        <FormControl isRequired>
+          <FormLabel as="legend" htmlFor="authorName">
             {t.authorName}
           </FormLabel>
           <Input
+            id="authorName"
             isDisabled={formDisabled}
             className="border-black"
             required
             value={formik.values.authorName}
             name="authorName"
-            variant="underline"
+            variant="flushed"
             onChange={formik.handleChange}
           />
         </FormControl>
-        <FormControl label="rating" isRequired className="my-2">
-          <FormLabel>
+        <FormControl isRequired className="my-2">
+          <FormLabel as="legend" htmlFor="rating">
             {t.rating}
           </FormLabel>
-          <input
+          <Slider
+            aria-label="slider-ex-6"
             name="rating"
             min={1}
-            // isDisabled={formDisabled}
+            isDisabled={formDisabled}
             max={5}
             defaultValue={1}
             onChange={(val) => {
               formik.setFieldValue("rating", val, true);
             }}
-          />
-            {/* {[1, 2, 3, 4, 5].map((each) => (
+          >
+            {[1, 2, 3, 4, 5].map((each) => (
               <SliderMark
                 key={each}
                 value={each}
@@ -122,17 +129,17 @@ export const ReviewForm: FC<ReviewFormProps> = ({
               >
                 {each}
               </SliderMark>
-            ))} */}
+            ))}
 
-            {/* <SliderTrack>
+            <SliderTrack>
               <SliderFilledTrack />
             </SliderTrack>
             <SliderThumb />
-          </Slider> */}
+          </Slider>
         </FormControl>
 
-        <FormControl label="review" isRequired>
-          <FormLabel>
+        <FormControl isRequired>
+          <FormLabel as="legend" htmlFor="review">
             {t.review}
           </FormLabel>
           <Textarea
@@ -140,7 +147,7 @@ export const ReviewForm: FC<ReviewFormProps> = ({
             className="border-black"
             name="review"
             onChange={formik.handleChange}
-            variant="underline"
+            variant="flushed"
             isDisabled={formDisabled}
             resize={"none"}
             value={formik.values.review}

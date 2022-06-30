@@ -26,11 +26,12 @@ const Products: NextPage = () => {
         title: "Products",
       })}
       <header className="relative flex justify-center items-center">
-        <div className="w-full h-64">
+        <div className="w-full h-64 relative">
           <Image
             src="/images/k.jpeg"
             alt=""
             layout="fill"
+            objectFit="cover"
             className="object-cover brightness-[0.3]"
           />
         </div>

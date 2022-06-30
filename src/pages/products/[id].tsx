@@ -1,7 +1,6 @@
 import { Button } from "@chakra-ui/react";
 import { NextPage, GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { LazyImage } from "../../components/LazyImage";
 import { RatingDisplay } from "../../components/RatingDisplay";
 import { productsData } from "../../products";
 import {
@@ -21,6 +20,7 @@ import {
 } from "../../translations/write-review";
 import { ReviewForm } from "../../components/ReviewForm";
 import { getHeadForPage } from "../../utils/getHead";
+import Image from "next/image";
 
 interface ProductDetailsProps {
   product: typeof productsData[0];
@@ -55,33 +55,32 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
         <div className="flex-1 md:flex-grow-[3.5] lg:flex-grow-[2.5] flex flex-col">
           <div className=" flex md:flex-row flex-col justify-center gap-4 items-start">
             <div className={`flex-1 flex-grow w-full h-auto rounded-md`}>
-              <div className="h-96">
-                <LazyImage
+              <div className="h-96 w-72 relative rounded-md overflow-hidden">
+                <Image
                   src={imagesData[selectedImgInd].href}
-                  className="rounded-md object-cover max-h-96 object-top"
-                  placeholderHeight="rounded-md"
-                  containerStyles="w-full h-auto"
-                  isZoomable
+                  className="rounded-md object-cover"
+                  objectPosition={"top"}
+                  layout="fill"
+                  alt=""
                 />
               </div>
               <div className="gap-1 overflow-x-scroll whitespace-nowrap no-scrollbar my-3">
                 {imagesData.map((each, ind) => (
-                  <LazyImage
-                    src={each.href}
+                  <div
                     key={each.href}
-                    alt=""
-                    className="rounded-md object-cover h-24 object-top"
-                    containerStyles={`w-auto max-w-[120px] h-auto inline-block mx-4 ${
-                      selectedImgInd === ind
-                        ? "border-[3px] border-cyan-700"
-                        : ""
-                    }`}
-                    placeholderHeight="h-24"
-                    onClick={() => {
-                      console.log(`clicked ${ind}`);
-                      setSelectedImgInd(ind);
-                    }}
-                  />
+                    className="h-24 relative rounded-sm overflow-hidden inline-block mx-4"
+                  >
+                    <Image
+                      src={each.href}
+                      alt=""
+                      layout="fill"
+                      className="rounded-md object-cov object-top"
+                      onClick={() => {
+                        console.log(`clicked ${ind}`);
+                        setSelectedImgInd(ind);
+                      }}
+                    />
+                  </div>
                 ))}
               </div>
             </div>

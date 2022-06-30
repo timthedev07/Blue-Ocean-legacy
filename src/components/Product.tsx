@@ -11,8 +11,7 @@ interface ProductProps {
 }
 
 export const Product: FC<ProductProps> = ({ name, price, id }) => {
-  const cldImage = cloudinaryInstance.image(`/products/${id}/thumbnail`);
-  const thumbnailURL = cldImage.toURL();
+  const thumbnailURL = `https://res.cloudinary.com/blueoceaninternationalimgcdn0/image/upload/v1656620442/products/${id}/thumbnail.jpg`;
 
   return (
     <Link href={`/products/${id}`} passHref>

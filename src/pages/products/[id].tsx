@@ -74,7 +74,7 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
                       src={each.href}
                       alt=""
                       layout="fill"
-                      className="rounded-md object-cov object-top"
+                      className="rounded-md object-top"
                       onClick={() => {
                         console.log(`clicked ${ind}`);
                         setSelectedImgInd(ind);

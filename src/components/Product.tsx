@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { FC } from "react";
 import { chopWordForUI } from "../utils/chopTextForUI";
-import { cloudinaryInstance } from "../cloudinary";
 import Image from "next/image";
 
 interface ProductProps {

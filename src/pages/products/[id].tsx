@@ -64,17 +64,18 @@ const ProductDetails: NextPage<ProductDetailsProps> = ({
                   alt=""
                 />
               </div>
-              <div className="gap-1 overflow-x-scroll whitespace-nowrap no-scrollbar my-3">
+              <div className="overflow-x-scroll whitespace-nowrap no-scrollbar w-72">
                 {imagesData.map((each, ind) => (
                   <div
                     key={each.href}
-                    className="h-24 relative rounded-sm overflow-hidden inline-block mx-4"
+                    className="h-24 w-24 relative rounded-sm inline-block overflow-hidden mx-2"
                   >
                     <Image
                       src={each.href}
                       alt=""
                       layout="fill"
-                      className="rounded-md object-top"
+                      className="rounded-md object-center"
+                      objectFit="contain"
                       onClick={() => {
                         console.log(`clicked ${ind}`);
                         setSelectedImgInd(ind);

@@ -13,4 +13,18 @@ export const productsData = [
     },
     price: 32.99,
   },
+  {
+    id: "1",
+    name: {
+      en: "",
+      es: "Gafas de deporte y ciclismo, con 5 lentes intercambiables.",
+      zh: "",
+    },
+    description: {
+      en: "",
+      es: "",
+      zh: "",
+    },
+    price: 34.99,
+  },
 ];
